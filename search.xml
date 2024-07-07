@@ -3,13 +3,16 @@
   <entry>
     <title>社会心理学</title>
     <url>/2024/02/29/College/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6/</url>
-    <content><![CDATA[<p>主讲：王非老师，原清华大学心理学系</p>
-<p>参考书：</p>
+    <content><![CDATA[<p><del>结果心理系改组以后这门课（还有没上成的一堆别的课）停开，真成时代的眼泪了（哭）</del></p>
+<p><del>辅修还没过半就寄，这就是青春吗。</del></p>
+<p><strong><em>主讲：</em></strong></p>
+<p><img src="https://s2.loli.net/2023/09/26/v1IrLzlATBCOydj.png" /></p>
+<p><strong><em>参考书：</em></strong></p>
 <blockquote>
-<p>《社会心理学》（各种版本）</p>
+<p>《社会心理学》（各种版本的教材）</p>
 <p>《社会性动物》，Elliot Aronson，科普读物</p>
 </blockquote>
-<h1 id="lecture-1-导论">Lecture 1 导论</h1>
+<h1 id="lecture-1导论">Lecture 1：导论</h1>
 <blockquote>
 <p><font color = #034C7A face = 楷体> 人与人为什么要相遇呢？</font></p>
 </blockquote>
@@ -2503,34 +2506,5 @@ alt="图片.png" />
       <tags>
         <tag>Optics</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/03/03/Demo/Hello%20Hexo/</url>
-    <content><![CDATA[<p>Welcome to Hexo Next. <span id="more"></span></p>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
