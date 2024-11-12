@@ -27,14 +27,14 @@ const ap = new APlayer({
   listMaxHeight: 90,
   lrcType: 3, // 0: 不显示歌词, 1: 网易云歌词, 3: 普通歌词
   audio: [
-    // {
-    //   name: '水の星へ爱をこめて',
-    //   artist: '森口博子',
-    //   url: 'http://music.163.com/song/media/outer/url?id=494858545.mp3',
-    //   cover: 'music/水の星へ爱をこめて/cover.jpg',
-    //   lrc: 'music/水の星へ爱をこめて/水の星へ愛をこめて-森口博子.lrc',
-    //   theme: '#2068bf'
-    // },
+    {
+      name: '水の星へ爱をこめて',
+      artist: '森口博子',
+      url: 'http://music.163.com/song/media/outer/url?id=494858545.mp3',
+      cover: 'music/水の星へ爱をこめて/cover.jpg',
+      lrc: 'music/水の星へ爱をこめて/水の星へ愛をこめて-森口博子.lrc',
+      theme: '#2068bf'
+    },
     {
       name: 'Midnight Blue',
       artist: 'KISSME QUICK',
