@@ -131,16 +131,34 @@ class="math inline">\(x\)</span></p>
 <h1 id="lecture-4-光场成像">Lecture 4 光场成像</h1>
 ]]></content>
       <categories>
+        <category>教令院</category>
         <category>往日之影</category>
         <category>24 Spring</category>
         <category>课上拾枝</category>
         <category>24 Spring</category>
-        <category>教令院</category>
         <category>Imaging</category>
       </categories>
       <tags>
         <tag>Imaging</tag>
         <tag>Microscopy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统，控制与应用数学</title>
+    <url>/2024/11/01/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/applied_math_and_control_theories/</url>
+    <content><![CDATA[<h1 id="laplace-变换">Laplace 变换</h1>
+<!-- 引入一个pdf -->
+<embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf'>
+<h1 id="控制系统">控制系统</h1>
+]]></content>
+      <categories>
+        <category>往日之影</category>
+        <category>24 Fall</category>
+        <category>课上拾枝</category>
+        <category>24 Fall</category>
+      </categories>
+      <tags>
+        <tag>Automation</tag>
       </tags>
   </entry>
   <entry>
@@ -2462,24 +2480,6 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
       </categories>
       <tags>
         <tag>Psychology</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>系统，控制与应用数学</title>
-    <url>/2024/11/01/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/applied_math_and_control_theories/</url>
-    <content><![CDATA[<h1 id="laplace-变换">Laplace 变换</h1>
-<!-- 引入一个pdf -->
-<embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf'>
-<h1 id="控制系统">控制系统</h1>
-]]></content>
-      <categories>
-        <category>往日之影</category>
-        <category>课上拾枝</category>
-        <category>24 Fall</category>
-        <category>24 Fall</category>
-      </categories>
-      <tags>
-        <tag>Automation</tag>
       </tags>
   </entry>
 </search>
