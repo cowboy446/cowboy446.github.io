@@ -1,3 +1,39 @@
+body {
+  background: url("/images/snow-2.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+.main-inner > .sub-menu,
+.main-inner > .post-block,
+.main-inner > .tabs-comment,
+.main-inner > .comments,
+.main-inner > .pagination {
+  background: rgba(245,245,245,0.42);
+}
+body {
+  color: #000;
+}
+.posts-expand .post-title-link {
+  color: #000;
+}
+.posts-expand .post-meta-container {
+  color: #000;
+}
+.sidebar {
+  opacity: 0.8;
+}
+.header-inner {
+  background: rgba(255,255,255,0.8);
+}
+.popup {
+  opacity: 0.9;
+}
+.main-inner {
+  background-color: rgba(255,255,255,0.75);
+  padding: 0px 40px 40px 40px;
+}
 :root {
   --body-bg-color: #eee;
   --content-bg-color: #fff;
@@ -383,7 +419,7 @@ pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5p
   transition: opacity 0.2s ease-in-out;
   background: #fff;
   border: 0;
-  font-size: 0.8125em;
+  font-size: 1em;
   right: 0;
   top: 0;
 }
@@ -1044,7 +1080,7 @@ pre code {
 }
 .site-subtitle {
   color: #ddd;
-  font-size: 0.8125em;
+  font-size: 1em;
   margin: 10px 10px 0;
 }
 .use-motion .site-title,
@@ -1116,7 +1152,7 @@ pre code {
 .menu-item a {
   border-bottom: 0;
   display: block;
-  font-size: 0.8125em;
+  font-size: 1em;
   transition: border-color 0.2s ease-in-out;
 }
 .menu-item a:hover,
@@ -1179,11 +1215,11 @@ pre code {
 }
 .site-description {
   color: #999;
-  font-size: 0.8125em;
+  font-size: 1em;
   margin-top: 0;
 }
 .links-of-author a {
-  font-size: 0.8125em;
+  font-size: 1em;
 }
 .links-of-author i[class^='fa'] {
   margin-right: 2px;
@@ -1208,7 +1244,7 @@ pre code {
   margin-right: 5px;
 }
 .links-of-blogroll {
-  font-size: 0.8125em;
+  font-size: 1em;
 }
 .links-of-blogroll-title {
   font-size: 0.875em;
@@ -1444,7 +1480,7 @@ pre code {
 }
 .site-state-item-name {
   color: #999;
-  font-size: 0.8125em;
+  font-size: 1em;
 }
 .footer {
   color: #999;
@@ -1475,12 +1511,12 @@ pre code {
 }
 @media (min-width: 1200px) {
   .footer-inner {
-    width: 1160px;
+    width: 70em;
   }
 }
 @media (min-width: 1600px) {
   .footer-inner {
-    width: 73%;
+    width: 85%;
   }
 }
 .use-motion .footer {
@@ -1945,7 +1981,7 @@ pre code {
 }
 .post-tags a {
   display: inline-block;
-  font-size: 0.8125em;
+  font-size: 1em;
 }
 .post-tags a:not(:last-child) {
   margin-right: 10px;
@@ -2318,7 +2354,7 @@ mjx-container[display='true'] + br {
 }
 header.header {
   background: var(--content-bg-color);
-  border-radius: 20px;
+  border-radius: 10px 10px 10px 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 @media (max-width: 991px) {
@@ -2340,12 +2376,12 @@ header.header {
 }
 @media (min-width: 1200px) {
   .main {
-    width: 1160px;
+    width: 70em;
   }
 }
 @media (min-width: 1600px) {
   .main {
-    width: 73%;
+    width: 85%;
   }
 }
 @media (max-width: 991px) {
@@ -2355,7 +2391,7 @@ header.header {
   }
 }
 .main-inner {
-  border-radius: 20px;
+  border-radius: 10px 10px 10px 10px;
   box-sizing: border-box;
   width: calc(100% - 252px);
 }
@@ -2384,11 +2420,11 @@ header.header {
   }
 }
 .site-brand-container {
-  background: var(--theme-color);
+  background: #000;
 }
 @media (max-width: 991px) {
   .site-nav-on .site-brand-container {
-    box-shadow: 0 0 16px rgba(0,0,0,0.5);
+    box-shadow: 0 0 16px rgba(0,0,0,0.8);
   }
 }
 .site-meta {
@@ -2485,7 +2521,7 @@ header.header {
 }
 .sidebar-inner {
   background: var(--content-bg-color);
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   box-sizing: border-box;
   color: var(--text-color);
@@ -2551,11 +2587,11 @@ header.header {
 .main-inner .comment-position .comments,
 .main-inner .pagination {
   background: var(--content-bg-color);
-  border-radius: 20px;
+  border-radius: 10px 10px 10px 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 .main-inner .post-block:not(:first-child):not(:first-child) {
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   margin-top: 12px;
 }
@@ -2573,7 +2609,7 @@ header.header {
 .main-inner > .comments,
 .main-inner .comment-position .comments,
 .main-inner .pagination {
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   margin-top: 12px;
 }
@@ -2638,4 +2674,40 @@ header.header {
   .comments {
     padding: 10px 12px;
   }
+}
+body {
+  background: url("/images/snow-2.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+.main-inner > .sub-menu,
+.main-inner > .post-block,
+.main-inner > .tabs-comment,
+.main-inner > .comments,
+.main-inner > .pagination {
+  background: rgba(245,245,245,0.42);
+}
+body {
+  color: #000;
+}
+.posts-expand .post-title-link {
+  color: #000;
+}
+.posts-expand .post-meta-container {
+  color: #000;
+}
+.sidebar {
+  opacity: 0.8;
+}
+.header-inner {
+  background: rgba(255,255,255,0.8);
+}
+.popup {
+  opacity: 0.9;
+}
+.main-inner {
+  background-color: rgba(255,255,255,0.75);
+  padding: 0px 40px 40px 40px;
 }

@@ -15,6 +15,7 @@
 const ap = new APlayer({
   container: document.getElementById('aplayer'),
   fixed: true,
+  mini: true,
   autoplay: false,
   listFolded: true,
   theme: '#FADFA3', // 主题色
@@ -42,6 +43,14 @@ const ap = new APlayer({
       cover: 'music/MidnightBlue/cover.png',
       lrc: 'music/MidnightBlue/MIDNIGHT BLUE-KISSME QUICK.lrc',
     }
-  ]
+  ],
+  lrc: {
+    color: '#2068bf' // 设置歌词颜色
+  }
 });
+
+// 设置音乐框为圆角10px
+ap.container.style.borderRadius = '30px';
+
+// 设置音乐框为圆角10px
 
