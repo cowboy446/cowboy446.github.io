@@ -21,7 +21,7 @@ const ap = new APlayer({
   theme: '#FADFA3', // 主题色
   loop: 'all',
   order: 'list',
-  preload: 'auto', // 'none' | 'metadata' | 'auto'
+  preload: 'metadata', // 'none' | 'metadata' | 'auto'
   volume: 0.7, 
   mutex: true, // 互斥，阻止多个播放器同时播放
   listFolded: true,
@@ -32,29 +32,27 @@ const ap = new APlayer({
       name: '水の星へ爱をこめて',
       artist: '森口博子',
       url: 'http://music.163.com/song/media/outer/url?id=494858545.mp3',
-      cover: 'music/水の星へ爱をこめて/cover.jpg',
-      lrc: 'music/水の星へ爱をこめて/水の星へ愛をこめて-森口博子.lrc',
+      cover: 'https://cowboy446.github.io/music/水の星へ爱をこめて/cover.jpg',
+      lrc: 'https://cowboy446.github.io/music/水の星へ爱をこめて/水の星へ愛をこめて-森口博子.lrc',
       theme: '#2068bf'
     },
     {
       name: 'Midnight Blue',
       artist: 'KISSME QUICK',
       url: 'http://music.163.com/song/media/outer/url?id=5007568.mp3',
-      cover: 'music/MidnightBlue/cover.png',
-      lrc: 'music/MidnightBlue/MIDNIGHT BLUE-KISSME QUICK.lrc',
+      cover: 'https://cowboy446.github.io/music/MidnightBlue/cover.png',
+      lrc: 'https://cowboy446.github.io/music/MidnightBlue/MIDNIGHT BLUE-KISSME QUICK.lrc',
     },
     {
       name: 'Laughter In The Rain',
       artist: 'Neil Sedaka',
       url: 'http://music.163.com/song/media/outer/url?id=27314643.mp3',
-      cover: 'music/Laughter In The Rain/cover.jpg',
-      lrc: 'music/Laughter In The Rain/Laughter In The Rain-Neil Sedaka.lrc',
+      cover: 'https://cowboy446.github.io/music/Laughter In The Rain/cover.jpg',
+      lrc: 'https://cowboy446.github.io/music/Laughter In The Rain/Laughter In The Rain-Neil Sedaka.lrc',
     }
   ],
 });
 
 // 设置音乐框为圆角10px
 ap.container.style.borderRadius = '10px';
-
-// 设置音乐框为圆角10px
 
