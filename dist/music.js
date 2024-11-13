@@ -42,15 +42,19 @@ const ap = new APlayer({
       url: 'http://music.163.com/song/media/outer/url?id=5007568.mp3',
       cover: 'music/MidnightBlue/cover.png',
       lrc: 'music/MidnightBlue/MIDNIGHT BLUE-KISSME QUICK.lrc',
+    },
+    {
+      name: 'Laughter In The Rain',
+      artist: 'Neil Sedaka',
+      url: 'http://music.163.com/song/media/outer/url?id=27314643.mp3',
+      cover: 'music/Laughter In The Rain/cover.jpg',
+      lrc: 'music/Laughter In The Rain/Laughter In The Rain-Neil Sedaka.lrc',
     }
   ],
-  lrc: {
-    color: '#2068bf' // 设置歌词颜色
-  }
 });
 
 // 设置音乐框为圆角10px
-ap.container.style.borderRadius = '30px';
+ap.container.style.borderRadius = '10px';
 
 // 设置音乐框为圆角10px
 
