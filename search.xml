@@ -1,931 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>计算成像导论</title>
-    <url>/2024/02/28/College/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F-%E4%BA%A4%E5%8F%89%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<blockquote>
-<p>《傅里叶光学导论》<a
-href="https://cowboy446.github.io/2024/02/01/College/计算成像/傅里叶光学导论/">（个人笔记）</a></p>
-</blockquote>
-<h1 id="lecture-1-显微成像概论">Lecture 1 显微成像概论</h1>
-<p>成像技术：传统视频--多维多尺度视频--智能计算成像</p>
-<p>全光函数：<span
-class="math inline">\(f(x,y,z,L,\lambda,t)\)</span>，恢复更多高维信息</p>
-<p>计算成像：Encode-Decode</p>
-<h2 id="现代显微成像">现代显微成像</h2>
-<p><strong>免疫荧光染色</strong></p>
-<blockquote>
-<p>Photons不是越多越好</p>
-</blockquote>
-<ul>
-<li>减弱背景荧光：confocal microscopy 单光子共聚焦--&gt;静态光学层析
-<ul>
-<li>点扫描，需要提高成像速度</li>
-<li>提高速度：Line-scan（对二维背景光过滤能力下降）/Spinning disk</li>
-</ul></li>
-<li>提高穿透：双光子/多光子
-<ul>
-<li>波长长的入射光穿透能力更强（指数级别），但还要考虑water
-absorption</li>
-<li>也是点扫描</li>
-<li>非线性激活，能量平方关系--&gt;聚焦面荧光效果最好，去除杂散光，光学层析</li>
-<li>基本限制：背景荧光噪声--&gt;
-三光子：更显著地抑制背景荧光，需要更强的能量——Sample Health</li>
-</ul></li>
-<li>降低光毒性 Photontoxic
-<ul>
-<li>长波长光</li>
-<li>低峰值光强，长时间曝光</li>
-<li>脉冲激光</li>
-<li>光片显微镜 Light-sheet microscopy，有效利用所有光子</li>
-</ul></li>
-</ul>
-<p><strong>活体介观显微成像？</strong></p>
-<p>细胞 --&gt; 器官尺度。</p>
-<h1 id="lecture-2-成像系统设计">Lecture 2 成像系统设计</h1>
-<h2 id="基本参数">基本参数</h2>
-<p><code>放大倍数</code>：<span class="math inline">\(M =
-\frac{f_{\text{image}}}{f_{\text{obj}}}\)</span></p>
-<p><code>空间分辨率</code>：衍射极限， <span class="math inline">\(d =
-\frac{\lambda}{2n\mathrm{sin}\theta}\)</span>，限制采样极限</p>
-<p><code>数值孔径 Numerical Aperture</code>：<span
-class="math inline">\(NA = n\mathrm{sin}\theta\)</span></p>
-<ul>
-<li><span class="math inline">\(NA\)</span>是透镜固有属性，<span
-class="math inline">\(\theta\)</span>是从透镜的光轴到透镜能够接收到的最边缘的光线的角度。</li>
-<li><span
-class="math inline">\(NA\)</span>越大，透镜接收光的能力越强，分辨率越高</li>
-</ul>
-<p><code>景深 Depth of field</code>：<span class="math inline">\(d_{tot}
-= \frac{\lambda n}{NA^2}+\frac{n}{M \cdot NA}e\)</span></p>
-<p><img src = "https://s2.loli.net/2024/03/12/fu6HCMBi9AeQ2WO.png" width = 300 alt = "景深示意图"></p>
-<p><code>轴向分辨率</code>：<span class="math inline">\(d_z =
-\frac{\lambda}{2n\mathrm{NA}^2}\)</span></p>
-<p><code>横向分辨率</code>：<span class="math inline">\(d_x =
-\frac{\lambda}{2n\mathrm{NA}}\)</span></p>
-<p><code>视场大小/视野 Field of View</code>：通常是视场角</p>
-<p><strong>物镜</strong></p>
-<p><img src = "https://s2.loli.net/2024/03/12/HiMqfWGgyvKO2nc.png" width = 400></p>
-<h2 id="系统设计流程">系统设计流程</h2>
-<hr />
-<p><strong>简单显微系统</strong></p>
-<ul>
-<li>视野大小/放大倍数</li>
-<li>分辨率</li>
-<li>工作波长</li>
-<li>工作距离</li>
-<li>景深/轴向分辨率</li>
-</ul>
-<p><strong>相机</strong></p>
-<ul>
-<li>像素数（2*视野/分辨率）</li>
-<li>采集速度</li>
-<li>量子效率、读出噪声</li>
-<li>尺寸</li>
-</ul>
-<hr />
-<h3 id="光学系统的设计">光学系统的设计</h3>
-<p><strong><code>4f system</code></strong>：<span
-class="math inline">\(M = \frac{f_d}{f}\)</span></p>
-<p><img src = "https://s2.loli.net/2024/03/12/gTKo6ZS47X5U8IG.png" width = 650></p>
-<p>级联
-<img src = "https://s2.loli.net/2024/03/12/YgIdcLvVX2qKZaQ.png" width = 600></p>
-<p>轴向间隔（景深）以<span class="math inline">\(M^2\)</span>变化
-<img src = "https://s2.loli.net/2024/03/12/XUojbWOmJT2rSD6.png" width = 600></p>
-<blockquote>
-<p>实际设计</p>
-<ul>
-<li>缩小孔径，增大F数以减小相差（亮度，景深，图像质量的trade-off）</li>
-<li>同样尺寸的镜头，焦距越长越好</li>
-</ul>
-<p>系统设计软件：Zemax，Sequential设计&amp;快速优化</p>
-</blockquote>
-<h3 id="光学系统的搭建">光学系统的搭建</h3>
-<p><img src = "https://s2.loli.net/2024/03/13/G9l6KVjF5AgEudD.png" width = 600></p>
-<h1 id="lecture-3-卷积解卷积">Lecture 3 卷积&amp;解卷积</h1>
-<h2 id="数字化建模卷积">数字化建模——卷积</h2>
-<p>成像系统：低通滤波器 <span class="math inline">\(b = x*c\)</span></p>
-<ul>
-<li><span class="math inline">\(c\)</span>：点扩散函数 <span
-class="math inline">\(PSF\)</span></li>
-<li><span class="math inline">\(x\)</span>：原像</li>
-<li><span
-class="math inline">\(b\)</span>：经过透镜系统后呈现在相机前的像</li>
-</ul>
-<p><img src = "https://s2.loli.net/2024/04/06/qb64rQZKuEfUsgc.png" width = 500></p>
-<p><img src = "https://s2.loli.net/2024/04/06/dEaxRc2hfsFnJ7U.png" width = 500></p>
-<h2 id="解卷积-deconvolution">解卷积 deconvolution</h2>
-<p><span class="math inline">\(b = x*c\)</span></p>
-<p>已知 <span class="math inline">\(b,c\)</span> 求解 <span
-class="math inline">\(x\)</span></p>
-<ul>
-<li>直接求逆：病态问题</li>
-<li>维纳滤波</li>
-<li>迭代优化算法/DL</li>
-<li>点扩散优化</li>
-</ul>
-<p><img src = "https://s2.loli.net/2024/04/06/NgGwU6cP3ZsQ1um.png" width = 200></p>
-<p><strong>Rechardson-Lucy(RL) deconvolution</strong></p>
-<figure class="highlight matlab"><figcaption><span>2D-RL deconvolution</span></figcaption><table><tr><td class="code"><pre><span class="line">maxiter = <span class="number">10</span>;</span><br><span class="line"><span class="comment">% Initialization</span></span><br><span class="line">deblurred_img = <span class="built_in">ones</span>([<span class="built_in">size</span>(WF)]); <span class="comment">% set image as initial guess</span></span><br><span class="line">psf_T = psf(<span class="keyword">end</span>:<span class="number">-1</span>:<span class="number">1</span>,<span class="keyword">end</span>:<span class="number">-1</span>:<span class="number">1</span>); <span class="comment">% flipped psf for bp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter = <span class="number">1</span>:maxiter</span><br><span class="line">    convolved_img = conv2(deblurred_img,psf,<span class="string">&#x27;same&#x27;</span>);</span><br><span class="line">    errorRelative = double(WF)./convolved_img;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% error bp using flipped psf</span></span><br><span class="line">    error = conv2(deblurred_img,psf_T,<span class="string">&#x27;same&#x27;</span>);</span><br><span class="line">    <span class="comment">% update the deblurred img</span></span><br><span class="line">    deblurred_img = error.*errorRelative;</span><br><span class="line">    deblurred_img(<span class="built_in">isnan</span>(deblurred_img)) = <span class="number">0</span>;</span><br><span class="line">    deblurred_img(deblurred_img &lt; <span class="number">0</span>) = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><figcaption><span>3D-RL deconvolution</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="lecture-4-光场成像">Lecture 4 光场成像</h1>
-]]></content>
-      <categories>
-        <category>往日之影</category>
-        <category>24 Spring</category>
-        <category>课上拾枝</category>
-        <category>24 Spring</category>
-        <category>教令院</category>
-        <category>Imaging</category>
-      </categories>
-      <tags>
-        <tag>Imaging</tag>
-        <tag>Microscopy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>系统，控制与应用数学</title>
-    <url>/2024/11/01/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/applied_math_and_control_theories/</url>
-    <content><![CDATA[<h1 id="laplace-变换">Laplace 变换</h1>
-<!-- 引入一个pdf -->
-<embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf'>
-<h1 id="控制系统">控制系统</h1>
-]]></content>
-      <categories>
-        <category>往日之影</category>
-        <category>课上拾枝</category>
-        <category>24 Fall</category>
-        <category>24 Fall</category>
-      </categories>
-      <tags>
-        <tag>Automation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>傅里叶光学导论</title>
-    <url>/2024/02/01/College/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F/%E5%82%85%E9%87%8C%E5%8F%B6%E5%85%89%E5%AD%A6%E5%AF%BC%E8%AE%BA/</url>
-    <content><![CDATA[<h1 id="二维信号与系统分析">二维信号与系统分析</h1>
-<h2 id="二维傅里叶分析">二维傅里叶分析</h2>
-<p>一维傅里叶变换</p>
-<p><span
-class="math display">\[\mathcal{F}\{g\}=\int_{-\infty}^{\infty}g(x)\exp[-\mathrm{j}2\pi
-f x]\mathrm{d}x\]</span></p>
-<p><span
-class="math display">\[\mathcal{F}^{-1}\{G\}=\int_{-\infty}^{\infty}G(f)\exp[\mathrm{j}2\pi
-f x]\mathrm{d}f\]</span></p>
-<h3 id="二维傅里叶变换">二维傅里叶变换</h3>
-<p><span
-class="math display">\[\mathcal{F}\{g\}=\iint_{-\infty}^{\infty}g(x,y)\exp[-\mathrm{j}2\pi(f_Xx+f_Yy)]\mathrm{d}x\mathrm{d}y\]</span></p>
-<p><span
-class="math display">\[\mathcal{F}^{-1}\{G\}=\iint_{-\infty}^{\infty}G(f_X,f_Y)\exp[\mathrm{j}2\pi(f_Xx+f_Yy)]\mathrm{d}f_X\mathrm{d}f_Y\]</span></p>
-<h3 id="delta函数"><span class="math inline">\(\delta\)</span>函数</h3>
-<p><span class="math display">\[\delta(t)=\begin{cases}\infty, &amp;
-t=0\\0, &amp; t\neq0\end{cases}\]</span></p>
-<h4 id="例子">例子</h4>
-<h3 id="性质">性质</h3>
-<ol type="1">
-<li><p>线性： <span class="math display">\[\mathcal{F} \{ ag_1+bg_2
-\}=a\mathcal{F}\{g_1\}+b\mathcal{F}\{g_2\}\]</span></p></li>
-<li><p>相似性： <span
-class="math display">\[\mathcal{F}\{g(ax,by)\}=\frac{1}{|ab|}\mathcal{F}\{g\}(\frac{f_X}{a},\frac{f_Y}{b})\]</span></p></li>
-<li><p>相移： <span
-class="math display">\[\mathcal{F}\{g(x-a,y-b)\}=\exp[-\mathrm{j}2\pi(af_X+bf_Y)]\mathcal{F}\{g\}\]</span></p></li>
-<li><p>Parseval定理：</p>
-<p><span
-class="math display">\[\iint_{-\infty}^{\infty}|g(x,y)|^2\mathrm{d}x\mathrm{d}y=\iint_{-\infty}^{\infty}|G(f_X,f_Y)|^2\mathrm{d}f_X\mathrm{d}f_Y\]</span></p></li>
-<li><p>卷积定理： <span
-class="math display">\[\mathcal{F}\{g_1*g_2\}=\mathcal{F}\{g_1\}\cdot\mathcal{F}\{g_2\}\]</span></p></li>
-<li><p>自相关定理： <span
-class="math display">\[\mathcal{F}\{g*g\}=|\mathcal{F}\{g\}|^2\]</span></p></li>
-<li><p>转动定理： <span
-class="math inline">\(\mathcal{F}\{g(r,\theta)\}=G(\rho,\phi)\)</span>,
-在空间上旋转<span class="math inline">\(\theta_0\)</span>角度，</p>
-<p><span class="math inline">\(\mathcal{F}\{g(xcos\theta -ysin\theta,
-xsin\theta+ycos\theta)\}=G(f_Xcos\theta-f_Ysin\theta,
-f_Xsin\theta+f_Ycos\theta)\)</span></p></li>
-<li><p>剪切定理： <span class="math display">\[\mathcal{F} \{
-g(x+ay,y+bx) \} = G(f_X-bf_Y, f_Y-af_X)\]</span></p>
-<ul>
-<li>空域中的水平剪切引起频域中的竖直剪切</li>
-<li>空域中的竖直剪切引起频域中的水平剪切</li>
-</ul></li>
-<li><p>傅里叶积分定理：在<span
-class="math inline">\(g\)</span>的每个连续点上，</p>
-<p><span
-class="math display">\[\mathcal{F}\mathcal{F^{-1}}\{g(x,y)\}=\mathcal{F^{-1}}\mathcal{F}\{g(x,y)\}=g(x,y)\]</span></p></li>
-</ol>
-<h3 id="可分离变量的函数">可分离变量的函数</h3>
-<p>若 <span class="math inline">\(g(x,y)=g_X(x)g_Y(y)\)</span> ，则函数
-<span class="math inline">\(g(x,y)\)</span>
-是可分离变量的函数，极坐标<span
-class="math inline">\((r,\theta)\)</span>中同理。</p>
-<h4 id="性质-1">性质</h4>
-<p>傅里叶变换是两个一维傅里叶变换的乘积： <span
-class="math display">\[\mathcal{F}\{g(x,y)\}=\mathcal{F}\{g_X(x)g_Y(y)\}=\mathcal{F_X}\{g_X(x)\}\cdot\mathcal{F_{Y}}\{g_Y(y)\}\]</span></p>
-<p>极坐标系中同理。</p>
-<h3
-id="具有圆对称性的函数傅里叶-贝塞尔变换">具有圆对称性的函数：傅里叶-贝塞尔变换</h3>
-<p>函数 <span class="math inline">\(g\)</span> 具有圆对称性：<span
-class="math inline">\(g(r,\theta)=g_R(r)\)</span>。</p>
-<ul>
-<li>大部分光学系统具有圆对称性</li>
-</ul>
-<p>圆对称函数的傅里叶变换称为傅里叶-贝塞尔变换： <span
-class="math display">\[G_0(\rho,\phi)=G_o(\rho) =
-2\pi\int_0^{\infty}rg_R(r)J_0(2\pi r\rho)\mathrm{d}r\]</span></p>
-<p>其中<span class="math inline">\(J_0\)</span>是零阶贝塞尔函数。</p>
-<p>圆对称函数的傅里叶逆变换： <span
-class="math display">\[g_R(r)={2\pi}\int_0^{\infty}\rho
-G_0(\rho)J_0(2\pi\rho r)\mathrm{d}\rho\]</span></p>
-<p>对于圆对称函数，变换和逆变换是相同的。</p>
-<h3 id="性质-2">性质</h3>
-<ol type="1">
-<li><p>在<span class="math inline">\(g_R(r)\)</span>的每个连续点上，
-<span
-class="math display">\[\mathcal{B}\mathcal{B^{-1}}\{g_R(r)\}=\mathcal{B^{-1}}\mathcal{B}\{g_R(r)\}=\mathcal{B}\mathcal{B}\{g_R(r)\}
-= g_R(r)\]</span></p></li>
-<li><p>相似性：<span class="math inline">\(\mathcal{B} \{ g_R(ar) \} =
-\frac{1}{a^2}G_0(\frac{\rho}{a})\)</span></p></li>
-</ol>
-<h2 id="常用函数和傅里叶变换对">常用函数和傅里叶变换对</h2>
-<h3 id="矩形函数">矩形函数</h3>
-<p><span class="math display">\[rect(x) = \begin{cases}1, &amp;
-|x|&lt;\frac{1}{2}\\\frac{1}{2}, &amp; |x|=\frac{1}{2}\\0, &amp;
-|x|&gt;\frac{1}{2}\end{cases}\]</span></p>
-<h3 id="sinc函数">sinc函数</h3>
-<p><span class="math display">\[sinc(x)=\frac{\sin(\pi x)}{\pi
-x}\]</span></p>
-<h3 id="符号函数">符号函数</h3>
-<p><span class="math display">\[sgn(x)=\begin{cases}1, &amp; x&gt;0\\0,
-&amp; x=0\\-1, &amp; x&lt;0\end{cases}\]</span></p>
-<h3 id="三角形函数">三角形函数</h3>
-<p><span class="math display">\[tri(x)=\begin{cases}1-|x|, &amp;
-|x|&lt;1\\0, &amp; |x|&gt;1\end{cases}\]</span></p>
-<h3 id="梳状函数">梳状函数</h3>
-<p><span
-class="math display">\[comb(x)=\sum_{n=-\infty}^{\infty}\delta(x-n)\]</span></p>
-<h3 id="圆域函数">圆域函数</h3>
-<p><span class="math display">\[circ\sqrt{x^2+y^2}=\begin{cases}1, &amp;
-\sqrt{x^2+y^2}&lt;1\\\frac{1}{2}, &amp; \sqrt{x^2+y^2}=1\\0, &amp;
-\sqrt{x^2+y^2}&gt;1\end{cases}\]</span></p>
-<h2 id="空间频率和空间频率局域化">空间频率和空间频率局域化</h2>
-<h3 id="局域空间频率">局域空间频率</h3>
-<p><span class="math display">\[g(x,y) = a(x,y)
-exp[\mathrm{j}\phi(x,y)]\]</span></p>
-<p>其中<span class="math inline">\(a(x,y)\)</span>是幅度函数，<span
-class="math inline">\(\phi(x,y)\)</span>是相位函数。</p>
-<p>定义函数<span class="math inline">\(g\)</span>的局域空间频率<span
-class="math inline">\((f_X^{(l)},f_Y^{(l)})\)</span>为：</p>
-<p><span
-class="math inline">\(\begin{cases}f_X^{(l)}(x,y)=\frac{1}{2\pi}\frac{\partial}{\partial
-x}\phi(x,y) \\ f_Y^{(l)}(x,y)=\frac{1}{2\pi}\frac{\partial}{\partial
-y}\phi(x,y)\end{cases}\)</span></p>
-<p>或矢量记号：<span
-class="math inline">\(\vec{f}^{(\ell)}=\frac{1}{2\pi}\nabla\phi(\vec{x})\)</span></p>
-<p>从而定义一个<strong>局域空间频率</strong>，</p>
-<ul>
-<li><p>依赖于空间的周期 <span
-class="math display">\[P(x,y)=\frac{1}{\sqrt{f_X^{(l)2}+f_Y^{(l)2}}}\]</span></p></li>
-<li><p>与x轴的夹角 <span
-class="math display">\[\phi(x,y)=\arctan\frac{f_Y^{(l)}}{f_X^{(l)}}\]</span></p></li>
-</ul>
-<h3 id="维格纳分布">维格纳分布</h3>
-<p>一个函数<span
-class="math inline">\(g(x,y)\)</span>的局域空间频率分布称为维格纳分布，定义为：
-<span
-class="math display">\[W_g(x,y;f_X,f_Y)=\iint_{-\infty}^{\infty}g(x+\frac{\Delta
-x}{2},y+\frac{\Delta y}{2})g^*(x-\frac{\Delta x}{2},y-\frac{\Delta
-y}{2})\exp[-j2\pi(f_X\Delta x+f_Y\Delta y)]\mathrm{d}\Delta
-x\mathrm{d}\Delta y\]</span></p>
-<p>将 <span class="math inline">\(g\)</span> 和 <span
-class="math inline">\(g^*\)</span> 的傅里叶变换分别记为 <span
-class="math inline">\(G(f_X,f_Y)\)</span> 和 <span
-class="math inline">\(G^*(f_X,f_Y)\)</span>，则维格纳分布可以表示为：</p>
-<p><span
-class="math display">\[W_g(x,y;f_X,f_Y)=\iint_{-\infty}^{\infty}G(f_X+\frac{\Delta
-f_X}{2},f_Y+\frac{\Delta f_Y}{2})G^*(f_X-\frac{\Delta
-f_X}{2},f_Y-\frac{\Delta f_Y}{2})\exp[j2\pi(x\Delta f_X +y\Delta
-f_Y\Delta)]\mathrm{d}\Delta f_X\mathrm{d}\Delta f_Y\]</span></p>
-<p>作为能量密度函数：</p>
-<p><span class="math display">\[\iint_{- \infty}^{\infty}
-W_g(x,y;f_X,f_Y)df_Xdf_Y=|g(x,y)|^2\]</span></p>
-<p><span class="math display">\[\iint_{-\infty}^{\infty}
-W_g(x,y;f_X,f_Y)dx dy=|G(f_X,f_Y)|^2\]</span></p>
-<p><span class="math display">\[\iint\iint_{-\infty}^{\infty}
-W_g(x,y;f_X,f_Y)dx dy df_X df_Y=\iint_{-\infty}^{\infty}|g(x,y)|^2dx
-dy=\iint_{-\infty}^{\infty}|G(f_X,f_Y)|^2df_X df_Y\]</span></p>
-<h2 id="线性系统">线性系统</h2>
-<p>电路网络：输入输出信号是一元（时间）独立的实值函数；</p>
-<p>成像系统：输入和输出信号可以是二元（空间）独立的实值函数（光强），也可以是复值函数（光场）。</p>
-<h3 id="线性不变系统">线性不变系统</h3>
-<ul>
-<li>线性时不变系统：一个系统的脉冲响应<span class="math inline">\(h(t,
-\tau)\)</span>（即在<span
-class="math inline">\(t\)</span>时刻对作用于<span
-class="math inline">\(\tau\)</span>时刻的脉冲的响应）只依赖于时间差<span
-class="math inline">\(t-\tau\)</span>。</li>
-<li>空间不变系统（等晕系统）：一个系统的脉冲响应<span
-class="math inline">\(h(x,y, \xi, \eta)\)</span>（即在<span
-class="math inline">\((x,y)\)</span>时刻对作用于<span
-class="math inline">\((\xi,
-\eta)\)</span>时刻的脉冲的响应）只依赖于距离<span
-class="math inline">\((x-\xi, y-\eta)\)</span>，即<span
-class="math inline">\(h(x,y, \xi, \eta)=h(x-\xi, y-\eta)\)</span>。</li>
-</ul>
-<p>对于不变系统，叠加积分可简化为卷积积分：</p>
-<p><span
-class="math display">\[g_2(x,y)=\iint_{-\infty}^{\infty}g_1(\xi,
-\eta)h(x-\xi, y-\eta)\mathrm{d}\xi\mathrm{d}\eta\]</span></p>
-<p>即 <span class="math display">\[g_2=g_1*h\]</span></p>
-<p>对上式两边进行傅里叶变换，再将简单计算得到的左式进行逆变换，从而降低计算复杂度。
-<span class="math display">\[G_2(f_X, f_Y)=G_1(f_X, f_Y)H(f_X,
-f_Y)\]</span> 其中<span
-class="math inline">\(H\)</span>是系统的传递函数，表示系统在频率域的响应（只适用于线性不变系统）。</p>
-<h2 id="二维抽样理论">二维抽样理论</h2>
-<h3 id="whittlaker-shannon抽样定理">Whittlaker-Shannon抽样定理</h3>
-<p>间隔合适的矩形阵列上的抽样值，可以完全精确地复原一个限带函数 -
-二维情况： <span
-class="math display">\[g(x,y)=\sum_{n=-\infty}^{\infty}\sum_{m=-\infty}^{\infty}g(\frac{n}{B_X},
-\frac{m}{B_Y})\cdot
-sinc[B_X(x-\frac{n}{B_X})]sinc[B_Y(y-\frac{m}{B_Y})]\]</span></p>
-<h3 id="过抽样欠抽样和频谱混淆">过抽样、欠抽样和频谱混淆</h3>
-<ul>
-<li>奈奎斯特密度：对于一个有限带宽的信号，允许信号复原的最小抽样密度（临界抽样密度）。</li>
-<li>过抽样：以高于奈奎斯特密度的抽样密度进行抽样，保证频率岛不重叠</li>
-<li>欠抽样：以低于奈奎斯特密度的抽样密度进行抽样，导致频率岛重叠，无法复原原始信号。若在频谱中只有孤立的零点，欠抽样是不可避免的</li>
-</ul>
-<h3 id="空间-带宽积">空间-带宽积</h3>
-<p>带宽：信号的频率范围</p>
-<p>空间带宽积：一个信号的空间带宽积是指信号的空间频率和频率的乘积。
-<span class="math display">\[N = L_X\cdot L_Y\cdot B_X\cdot
-B_Y\]</span></p>
-<h3 id="离散傅里叶变换">离散傅里叶变换</h3>
-<p>利用抽样数据，得到离散傅里叶变换（DFT）： <span
-class="math display">\[\tilde{G}_{p,q}=DFT\{\tilde{g}_{n,m}\} =
-\sum_{n=0}^{N_X-1}\sum_{m=0}^{N_Y-1}\tilde{g}_{n,m}\exp\left[-\mathrm{j}2\pi\left(\frac{np}{N_X}+\frac{mq}{N_Y}\right)\right]\]</span></p>
-<p>逆变换：</p>
-<p><span
-class="math display">\[\tilde{g}_{n,m}=DFT^{-1}\{\tilde{G}_{p,q}\} =
-\frac{1}{N_XN_Y}\sum_{p=0}^{N_X-1}\sum_{q=0}^{N_Y-1}\tilde{G}_{p,q}\exp\left[\mathrm{j}2\pi\left(\frac{np}{N_X}+\frac{mq}{N_Y}\right)\right]\]</span></p>
-<p>可用快速傅里叶变换（FFT）算法进行计算，复杂度为<span
-class="math inline">\(O(N\log N)\)</span>。</p>
-<h2 id="片投影定理">片投影定理</h2>
-<p>二维函数<span
-class="math inline">\(g(x,y)\)</span>在过原点且与x轴夹角为<span
-class="math inline">\(\theta\)</span>的直线上的投影为 <span
-class="math display">\[p_{\theta}(x&#39;)=\int_{-\infty}^{\infty}g(x&#39;cos\theta-y&#39;sin\theta,
-x&#39;sin\theta+y&#39;cos\theta)\mathrm{d}y&#39;\]</span></p>
-<ul>
-<li>投影在x'轴上，y'轴垂直于x'轴，其中</li>
-</ul>
-<p><span
-class="math inline">\(x&#39;=x\cos\theta+y\sin\theta\)</span>,</p>
-<p><span
-class="math inline">\(y&#39;=-x\sin\theta+y\cos\theta\)</span></p>
-<p>投影定理：投影 <span
-class="math inline">\(p_{\theta}(x&#39;)\)</span> 的傅里叶变换 <span
-class="math inline">\(P_{\theta}(f)\)</span> 等同于函数 <span
-class="math inline">\(g(x,y)\)</span> 的傅里叶变换 <span
-class="math inline">\(G(f_X, f_Y)\)</span> 沿着过原点且与<span
-class="math inline">\(f_X\)</span>轴夹角为<span
-class="math inline">\(\theta\)</span>的直线的切片： <span
-class="math display">\[P_{\theta}(f)=G(f\cos\theta,
-f\sin\theta)\]</span></p>
-<h1 id="标量衍射理论基础">标量衍射理论基础</h1>
-<p>讨论衍射时，衍射物的结构比光波波长大得多，因此可以用标量波动方程来描述光波的传播（矢量近似为标量）。</p>
-<h2 id="数学预备知识">数学预备知识</h2>
-<h3 id="亥姆霍兹方程">亥姆霍兹方程</h3>
-<p>对于单色波，用标量场<span
-class="math inline">\(u(P,t)\)</span>描述在P点、t时刻的波动， <span
-class="math display">\[u(P,t)=Re\{A(P)\exp[\mathrm{j}(-2\pi \nu
-t+\phi(P))]\}\]</span></p>
-<p>其中<span class="math inline">\(A(P)\)</span>是振幅，<span
-class="math inline">\(\phi(P)\)</span>是相位，<span
-class="math inline">\(\nu\)</span>是光的频率。</p>
-<p>标量波动方程： <span
-class="math display">\[\nabla^2u-\frac{n^2}{c^2}\frac{\partial^2u}{\partial
-t^2}=0\]</span></p>
-<p><span class="math inline">\(\nabla^2\)</span>是拉普拉斯算子，<span
-class="math inline">\(n\)</span>是介质折射率，<span
-class="math inline">\(c\)</span>是光速。</p>
-<p>结合两式得到<strong>亥姆霍兹方程</strong>： <span
-class="math display">\[(\nabla^2+k^2)u=0\]</span></p>
-<p>其中<span class="math inline">\(k=2\pi n \frac{\nu}{c} =
-\frac{2\pi}{\lambda}\)</span>是波数。</p>
-<p>假定任何电介质中传播的单色光扰动的复振幅都遵从亥姆霍兹方程。</p>
-<h3 id="格林定理">格林定理</h3>
-<p>格林定理：对于任意两个函数<span
-class="math inline">\(U(P)\)</span>和<span
-class="math inline">\(V(P)\)</span>，在有限区域内的体积分可以转化为体积分和边界积分的和：
-<span
-class="math display">\[\iiint_V\left(U\nabla^2V-V\nabla^2U\right)\mathrm{d}v=\oint_S\left(U\frac{\partial
-V}{\partial n}-V\frac{\partial U}{\partial
-n}\right)\mathrm{d}s\]</span></p>
-<p>其中<span class="math inline">\(S\)</span>是体积<span
-class="math inline">\(V\)</span>的边界，<span
-class="math inline">\(\frac{\partial}{\partial
-n}\)</span>是沿着边界的外法线方向的梯度。</p>
-<h3 id="亥姆霍兹和基尔霍夫积分定理">亥姆霍兹和基尔霍夫积分定理</h3>
-<p>基尔霍夫的衍射理论建立在一个积分定理的基础上，这个积分定理把齐次波动方程在任意一点的解用包围这一点的任意闭合曲面上的解及其一阶导数的值来表示。</p>
-<p><img src="https://s2.loli.net/2024/02/17/qtfs7Ayvea9W3mL.png" /></p>
-<p>选定辅助函数（由<span
-class="math inline">\(P_0\)</span>点向外发散的单位振幅的球面波，自由空间格林函数）
-<span class="math display">\[G(P_1) =
-\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\]</span></p>
-<p>积分体积<span class="math inline">\(V&#39;\)</span>为介于<span
-class="math inline">\(S\)</span>和<span
-class="math inline">\(S_{\epsilon}\)</span>之间的体积，积分曲面是复合曲面<span
-class="math inline">\(S&#39; = S + S_{\epsilon}\)</span></p>
-<p>结合亥姆霍兹方程&amp;格林定理，可得<strong>亥姆霍兹和基尔霍夫的积分定理</strong>：</p>
-<p><span
-class="math display">\[U(P_{0})=\frac1{4\pi}\iint_{S}\left\{\frac{\partial
-U}{\partial
-n}\left[\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\right]-U\frac\partial{\partial
-n}\left[\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\right]\right\}\mathrm{d}s\]</span></p>
-<p>从而使任意一点的场可以用波在包围这一点的任意闭合曲面上的“边值”表示。</p>
-<h2 id="平面屏幕衍射的基尔霍夫公式">平面屏幕衍射的基尔霍夫公式</h2>
-<p><img src="https://s2.loli.net/2024/02/17/Vmq5kHOS2uX4GYz.png" /></p>
-<p><img src="https://s2.loli.net/2024/02/17/8MVuwrdY5tNKf6k.png" /></p>
-<p>由一个发散的球面波照明时成立，<strong>菲涅耳-基尔霍夫衍射公式</strong>：</p>
-<p><span class="math display">\[U(P_0)=\frac
-A{\mathrm{j}\lambda}\int\int_\Sigma\frac{\exp[\mathrm{j}k(r_{21}+r_{01})]}{r_{21}r_{01}}\left[\frac{\cos(\vec{n},\vec{r}_{01})-\cos(\vec{n},\vec{r}_{21})}2\right]\mathrm{d}s\]</span></p>
-将衍射公式改写成如下形式： $$
-<span class="math display">\[\begin{gathered}
-\begin{aligned}U(P_{0})=\iint_{\Sigma}\tilde{U}(P_{1})\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\mathrm{d}s,\end{aligned}
-\\
-\tilde{U}(P_{1})=\frac{1}{\mathrm{j}\lambda}\left[\frac{A\operatorname{exp}(\mathrm{j}kr_{21})}{r_{21}}\right]\left[\frac{\operatorname{cos}(\vec{n},\vec{r}_{01})-\operatorname{cos}(\vec{n},\vec{r}_{21})}{2}\right]
-\end{gathered}\]</span>
-<p>$$</p>
-<p>可以理解为：<span
-class="math inline">\(P_0\)</span>的场是由位于孔径<span
-class="math inline">\(\Sigma\)</span>内的无穷多个虚拟的“次级”点源产生的。次级波源具有确定的振幅和相位，表示为<span
-class="math inline">\(\tilde{U}(P_1)\)</span>，与照明波前、照明方向和观察方向有关。</p>
-<p>上述公式限于孔径由单个扩散球面波照明的情形，下面的<strong>瑞利-索末菲理论</strong>可以取消这一限制。</p>
-<h2 id="瑞利-索末菲衍射公式">瑞利-索末菲衍射公式</h2>
-<p>索末菲消除了基尔霍夫衍射理论中同时对波动及其法向导数施加边界条件的不自洽性。</p>
-<p>重新选择格林函数<span
-class="math inline">\(G\)</span>，引入镜像对称点源<span
-class="math inline">\(\tilde{P}_0\)</span>，波长同为<span
-class="math inline">\(\lambda\)</span>，且相位差为180°，有 <span
-class="math display">\[G_{-}(P_{1})=\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}-\frac{\exp(\mathrm{j}k\tilde{r}_{01})}{\tilde{r}_{01}}\]</span></p>
-<p>得到<strong>第一种瑞利-索末菲解</strong>： <span
-class="math display">\[U_1\left(P_0\right)=\frac1{\text{j}\lambda}\iint_{\Sigma}U(P_1)\frac{\exp(\text{j}kr_{01})}{r_{01}}\cos(\vec{n},\vec{r}_{01})\mathrm{d}s\\r_{01}&gt;&gt;\lambda\]</span></p>
-<p>使两点源同相振动，得到<strong>第二种瑞利-索末菲解</strong>： <span
-class="math display">\[G_{+}(P_{1})=\frac{\exp(\text{j}kr_{\text{O}1})}{r_{01}}+\frac{\exp(\text{j}k\widetilde{r}_{\text{O}1})}{\widetilde{r}_{01}}\]</span>
-<span
-class="math display">\[U_{\Pi}\left(P_{0}\right)=-\frac{A}{\mathrm{j}\lambda}\int\int_{\Sigma}\frac{\exp[\mathrm{j}k(r_{21}+r_{01})]}{r_{21}r_{01}}\cos(\vec{n},\vec{r}_{21})\mathrm{d}s\\r_{21}&gt;&gt;\lambda\]</span></p>
-<h2
-id="基尔霍夫理论和瑞利-索末菲理论的比较">基尔霍夫理论和瑞利-索末菲理论的比较</h2>
-<ol type="1">
-<li><p>在<span class="math inline">\(\Sigma\)</span>面上， <span
-class="math display">\[G_+ = 2G_K, \ \ \
-\frac{\partial G_-}{\partial n} = \frac{\partial G_K}{\partial
-n}\]</span></p></li>
-<li><p>基尔霍夫解是两种瑞利-索末菲解的算术平均。</p></li>
-</ol>
-<p>定义倾斜因子<span
-class="math inline">\(\psi\)</span>，将三种理论统一： <span
-class="math display">\[U(P_{0})=\frac{A}{\text{j}\lambda}\iint_{\Sigma}\frac{\exp[\text{j}k(r_{21}+r_{01})]}{r_{21}r_{01}}\psi\text{d}s\]</span></p>
-<p>其中 <span
-class="math display">\[\left.\psi=\left\{\begin{array}{l}\frac{1}{2}[\cos(\vec{n},\vec{n}_{01})-\cos(\vec{n},\vec{r}_{21})],\text{基尔霍夫理论}\\\\\cos(\vec{n},\vec{r}_{01}),\text{第一种瑞利-索末菲理论}\\\\-\cos(\vec{n},\vec{r}_{21}),\text{第二种瑞利-索末菲理论}\end{array}\right.\right.\]</span></p>
-<p>对于无限远处的点光源产生的正入射平面波， <span
-class="math display">\[\left.\psi=\left\{\begin{array}{l}\frac{1}{2}[1+\cos\theta],\text{基尔霍夫理论}\\\\\cos\theta,\text{第一种瑞利-索末菲理论}\\\\1,\text{第二种瑞利-索末菲理论}\end{array}\right.\right.\]</span></p>
-<h2
-id="惠更斯-菲涅耳原理的进一步讨论">惠更斯-菲涅耳原理的进一步讨论</h2>
-<p>第一种瑞利-索末菲解可以作为惠更斯-菲涅耳原理的数学表述： <span
-class="math display">\[U(P_{0})=\frac1{\text{j}\lambda}\iint_{\Sigma}U(P_{1})\frac{\exp(\text{j}kr_{01})}{r_{01}}\cos
-\theta\text{d}s\]</span></p>
-<p>将观察到的场<span class="math inline">\(U(P_0)\)</span>表示为<span
-class="math inline">\(\Sigma\)</span>面上各点<span
-class="math inline">\(P_1\)</span>的次级波源发出的发散球面波的叠加。<span
-class="math inline">\(P_1\)</span>点上的次级波源具有如下性质： -
-复振幅与相应点上的原波振幅成正比 - 振幅与波长<span
-class="math inline">\(\lambda\)</span>成反比 - 因子<span
-class="math inline">\(1/\text{j}\)</span>表示次级波源的相位比原波相位超前<span
-class="math inline">\(\pi/2\)</span> -
-每个次级波源有一个指向形式图样<span
-class="math inline">\(\cos\theta\)</span></p>
-<p>惠更斯-菲涅耳原理的数学表示，本质上是叠加积分：把上式重写为 <span
-class="math display">\[U(P_0)=\iint_{\Sigma}h(P_0,P_1)U(P_1)\mathrm{d}s\]</span></p>
-<p>其中脉冲响应函数<span
-class="math inline">\(h(P_0,P_1)\)</span>在近似解中给出： <span
-class="math display">\[h(P_0,P_1)=\frac{1}{\text{j}\lambda}\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\cos\theta\]</span></p>
-<h2 id="推广到非单色波">推广到非单色波</h2>
-<p>利用傅里叶变换，可以将单色波的衍射综合出非单色波的衍射。 <span
-class="math display">\[u(P_0,t)=\iint_{\Sigma}\frac{\cos(\vec{n},\vec{r}_{01})}{2\pi
-vr_{01}}\frac{\mathrm{d}}{\mathrm{d}t}u\left(P_1,t-\frac{r_{01}}{v}\right)\mathrm{d}s\]</span></p>
-<h2 id="边界上的衍射">边界上的衍射</h2>
-<p>托马斯-杨：当光波通过一个有限孔径时，光波的边界会产生衍射，屏幕后的场由边界的衍射和直接透射的入射波叠加而成。</p>
-<p>相较于惠更斯-菲涅耳原理，边界衍射更符合实际情况。</p>
-<h2 id="平面波的角谱">平面波的角谱</h2>
-<p>······</p>
-<h1 id="菲涅耳衍射与夫琅禾费衍射">菲涅耳衍射与夫琅禾费衍射</h1>
-<p>普遍理论的近似（菲涅耳近似、夫琅禾费近似）。用比较简单的数学运算来计算衍射图样。</p>
-<h2 id="背景">背景</h2>
-<h3 id="波场强度">波场强度</h3>
-<p>利用功率表示波的强度 <span
-class="math display">\[I(P)=|U(P)|^2\]</span> 或非单色的窄带波 <span
-class="math display">\[I(P)=\left\langle|u(P,t)|^2\right\rangle
-\]</span></p>
-<p>计算衍射图样时，认为要求的量就是波的强度。</p>
-<h3
-id="直角坐标系中的惠更斯-菲涅耳原理">直角坐标系中的惠更斯-菲涅耳原理</h3>
-<p><img src="https://s2.loli.net/2024/02/20/7DtHvWeN4pAod59.png" /></p>
-<p>惠更斯-菲涅耳原理：</p>
-<p><span
-class="math display">\[U(P_{0})=\frac{1}{\text{j}\lambda}\iint_{\Sigma}U(P_{1})\frac{\exp(\text{j}kr_{01})}{r_{01}}\cos\theta\mathrm{d}s\]</span></p>
-<p><span class="math display">\[\cos \theta =
-\frac{z}{r_{01}}\]</span></p>
-<p>因此</p>
-<p><span
-class="math display">\[U(x,y)=\frac{z}{\text{j}\lambda}\iint_{\Sigma}U(\xi,\eta)\frac{\exp(\text{j}kr_{01})}{r_{01}^2}\mathrm{d}\xi\mathrm{d}\eta\]</span></p>
-<p><span
-class="math display">\[r_{01}=\sqrt{z^2+\left(x-\xi\right)^2+\left(y-\eta\right)^2}\]</span></p>
-<h2 id="菲涅耳近似">菲涅耳近似</h2>
-<p>将<span
-class="math inline">\(r_{01}=\sqrt{z^2+\left(x-\xi\right)^2+\left(y-\eta\right)^2}\)</span>展开，保留到2阶：</p>
-<p><span class="math display">\[r_{01}\approx
-z\left[1+\frac12\left(\frac{x-\xi}z\right)^2+\frac12\left(\frac{y-\eta}z\right)^2\right]\]</span></p>
-<p>近似后得到 <span class="math inline">\(U(x,y,z)\)</span> <span
-class="math display">\[U(x,y,z)=\frac{\mathrm{e}^{jkz}}{\mathrm{j}\lambda
-z}\iint_{-\infty}^{\infty}U(\xi,\eta,0)\exp\left\{\text{j}\frac{k}{2z}[(x-\xi)^2+(y-\eta)^2]\right\}\mathrm{d}\xi\mathrm{d}\eta
-\]</span></p>
-<p>可表示为卷积形式： <span
-class="math display">\[U(x,y,z)=\iint_{-\infty}^{\infty}U(\xi,\eta,0)h(x-\xi,y-\eta)\mathrm{d}\xi\mathrm{d}\eta
-\]</span> <span
-class="math display">\[\begin{aligned}h(x,y)=\frac{\mathrm{e}^{\mathrm{j}kz}}{\mathrm{j}\lambda
-z}\exp\left[\frac{\mathrm{j}k}{2z}(x^2+y^2)\right]\end{aligned}\]</span></p>
-<p>将<span
-class="math inline">\(\exp\left[\frac{\text{j}k}{2z}(x^2+y^2)\right]\)</span>项提出积分外：</p>
-<p><span class="math display">\[\begin{aligned}
-U(x,y,z)=&amp; \frac{\mathrm{e}^{\mathrm{j}kz}}{\mathrm{j}\lambda
-z}\mathrm{e}^{\mathrm{j}\frac{k}{2z}(x^{2}+y^{2})}\iint_{-\infty}^{\infty}\left[U(\xi,\eta,0)\mathrm{e}^{\mathrm{j}\frac{k}{2z}(\xi^{2}+\eta^{2})}\right]  
-\times\mathrm{e}^{-\mathrm{j}\frac{2\pi}{\lambda
-z}(x\xi+y\eta)}\mathrm{d}\xi\mathrm{d}\eta
-\end{aligned}\]</span></p>
-<p>可见，它是紧靠孔径右方复场<span
-class="math inline">\(U(\xi,\eta,0)\)</span>的傅里叶变换。</p>
-<p>上述表达式为<strong>菲涅耳衍射积分</strong>。</p>
-<h3
-id="通过光线传递矩阵表示菲涅耳衍射">通过光线传递矩阵表示菲涅耳衍射</h3>
-<p>光线传递矩阵：</p>
-<p><img src="https://s2.loli.net/2024/02/20/lVtWCHXw1GL8BRx.png" /></p>
-<p><span
-class="math display">\[\begin{bmatrix}y_2\\\\\hat{\theta}_2\end{bmatrix}=\begin{bmatrix}A&amp;B\\\\C&amp;D\end{bmatrix}\begin{bmatrix}y_1\\\\\hat{\theta}_1\end{bmatrix}\]</span></p>
-<p>光在穿过不是自由空间，而是有任意光线传递矩阵的系统时，相应的脉冲响应和衍射公式：
-<span
-class="math display">\[h(y_2,y_1)=\frac{\mathrm{e}^{\mathrm{i}k_0L_0}}{\sqrt{\mathrm{j}B\lambda_0}}\exp\left[\mathrm{j}\frac{\pi}{B\lambda_0}(Ay_1^2-2y_1y_2+Dy_2^2)\right]\]</span>
-<span
-class="math display">\[U_2(y_2)=\frac{\mathrm{e}^{\mathbf{j}k_0L_0}}{\sqrt{\mathbf{j}B\lambda_0}}\int_{-\infty}^\infty
-U_1(y_1)\exp\left[\frac{\mathbf{j}\pi}{B\lambda_0}(Ay_1^2-2y_1y_2+Dy_2^2)\right]\mathrm{d}y_1\]</span></p>
-<h2 id="夫琅禾费近似">夫琅禾费近似</h2>
-<p>更强的近似：夫琅禾费近似 <span
-class="math display">\[z\gg\frac{k(\xi^2+\eta^2)_{\max}}2\]</span></p>
-<p>则菲涅耳式中积分号下的二次相位因子 <span
-class="math inline">\(\mathrm{e}^{\mathrm{j}\frac{k}{2z}(\xi^{2}+\eta^{2})}\)</span>
-近似为1，则场强可由孔径上的场分布本身的傅里叶变换直接求出。</p>
-<p>在夫琅禾费衍射区（远场内），</p>
-<p><span
-class="math display">\[U(x,y,z)=\frac{\mathrm{e}^{\mathrm{i}kz}\mathrm{e}^{\mathrm{i}\frac
-k{2z}(x^2+y^2)}}{\mathrm{j}\lambda z}\iint_{-\infty}^\infty
-U(\xi,\eta,0)\mathrm{exp}\left[-\mathrm{j}\frac{2\pi}{\lambda
-z}(x\xi+y\eta)\right]\mathrm{d}\xi\mathrm{d}\eta \]</span></p>
-<p>除了积分号前的相位因子外，这个式子简单地是孔径上的场分布的傅里叶变换。空间频率
-<span class="math display">\[f_X=\frac x{\lambda z} \\ \ \\ f_Y=\frac
-y{\lambda z}\]</span></p>
-<h3 id="夫琅禾费衍射图样">夫琅禾费衍射图样</h3>
-<h4 id="矩形孔">矩形孔</h4>
-<p>矩形孔径，振幅透射率为 <span
-class="math display">\[t_\mathrm{A}(\xi,\eta)=\mathrm{rect}\left(\frac{\xi}{\ell_X}\right)\mathrm{rect}\left(\frac{\eta}{\ell_Y}\right)\]</span></p>
-若单位振幅的单色平面波垂直照射到孔径上，孔径上的场分布为<span
-class="math inline">\(t_\mathrm{A}(\xi,\eta)\)</span>，则夫琅禾费图样为
-$$U(x,y,z)={U(,,0)}|_{f_X=x/(z),f_Y=y/(z)} \ \ =
-<span
-class="math display">\[\begin{aligned}\frac{\mathrm{e}^{\mathrm{j}kz}\mathrm{e}^{\mathrm{j}\frac{k}{2z}(x^2+y^2)}}{\mathrm{j}\lambda
-z}A\text{sinc}\left(\frac{\ell_Xx}{\lambda
-z}\right)\text{sinc}\left(\frac{\ell_Yy}{\lambda
-z}\right)\end{aligned}\]</span>
-<p>,  </p>
-<p>(A=_X_Y)$$</p>
-<p><span
-class="math display">\[I(x,y,z)=\frac{A^2}{\lambda^2z^2}\mathrm{sinc}^2\left(\frac{\ell_Xx}{\lambda
-z}\right)\mathrm{sinc}^2\left(\frac{\ell_Yy}{\lambda
-z}\right)\]</span></p>
-<figure>
-<img src="https://s2.loli.net/2024/02/20/roDuGnI4elFjmJc.png"
-alt="实际衍射图样需对比度反转" />
-<figcaption aria-hidden="true">实际衍射图样需对比度反转</figcaption>
-</figure>
-<h4 id="圆形孔">圆形孔</h4>
-<p>孔径直径为<span
-class="math inline">\(l\)</span>，孔径平面径向（极）坐标为<span
-class="math inline">\(q\)</span>， <span
-class="math display">\[t_\mathrm{A}(q)=\mathrm{circ}\left(2\frac{q}{\ell}\right)\]</span></p>
-<p>圆对称性，可用傅里叶-贝塞尔变换： <span
-class="math display">\[U(r,z)=\frac{\mathrm{e}^{\mathrm{j}kz}}{\mathrm{j}\lambda
-z}\exp\left(\mathrm{j}\frac{kr^{2}}{2z}\right)\mathcal{B}\{U(q,0)\}\bigg|_{\rho=r/(\lambda
-z)}
-\\\ \\ q=\sqrt{\xi^2+\eta^2}
-\\\ \\ \begin{aligned}\rho=\sqrt{f_X^2+f_Y^2}\end{aligned}\]</span></p>
-<p><span
-class="math display">\[\mathcal{B}\left\{\operatorname{circ}\left(2\frac
-q\ell\right)\right\}=A\left[2\frac{J_1(\pi\ell\rho)}{\pi\ell\rho}\right],
-\ A = \pi(\ell/2)^2\]</span></p>
-<p>夫琅禾费图样中的振幅和强度分布为： <span
-class="math display">\[U(r,z)=\mathrm{e}^{\mathrm{j}kz}\exp\left(\mathrm{j}\frac{kr^2}{2z}\right)\frac{A}{\mathrm{j}\lambda
-z}\left[2\frac{J_1k\ell r/(2z)}{k\ell r/(2z)}\right]\]</span></p>
-<p><span class="math display">\[I(r,z)=\left(\frac A{\lambda
-z}\right)^2\biggl[2\frac{J_1k\ell r/(2z)}{k\ell
-r/(2z)}\biggr]^2\]</span></p>
-<p>沿着<span class="math inline">\(x\)</span>轴或<span
-class="math inline">\(y\)</span>轴测量，中央瓣宽度为<span
-class="math inline">\(d = 1.22\frac{\lambda z}{\ell}\)</span></p>
-<h4 id="薄正弦振幅光栅">薄正弦振幅光栅</h4>
-<p>按照定义，透射率<span
-class="math inline">\(t_\mathrm{A}(\xi,\eta)\)</span>为紧贴屏幕后的场的复振幅与入射到屏幕上的复振幅的比值。考虑<em>薄正弦振幅光栅</em>，其透射函数如下（假设光栅结构被限制在宽度为<span
-class="math inline">\(\ell\)</span>的正方形孔径内）： <span
-class="math display">\[t_\mathrm{A}(\xi,\eta)=\left[\frac12+\frac
-m2\cos(2\pi
-f_0\xi)\right]\text{rect}\left(\frac\xi\ell\right)\text{rect}\left(\frac\eta\ell\right)\]</span></p>
-<p><img src="https://s2.loli.net/2024/02/21/kS9g67boUAtarOR.png" /></p>
-<p>单位振幅的单色平面波垂直照明，孔径透射场分布为<span
-class="math inline">\(t_A\)</span></p>
-<p><span
-class="math display">\[\begin{aligned}\mathcal{F}\left\{\frac{1}{2}+\frac{m}{2}\cos(2\pi
-f_0\xi)\right\}=&amp;\frac{1}{2}\delta(f_X,f_Y)+\frac{m}{4}\delta(f_X+f_0,f_Y)\\&amp;+\frac{m}{4}\delta(f_X-f_0,f_Y)\end{aligned}\]</span>
-<span
-class="math display">\[\mathcal{F}\left\{\mathrm{rect}\left(\frac\xi\ell\right)\mathrm{rect}\left(\frac\eta\ell\right)\right\}=A\mathrm{~sinc}(\ell
-f_X)\mathrm{sinc}(\ell f_Y)\]</span> 利用卷积定理求出 <span
-class="math display">\[\begin{gathered}
-\mathcal{F}\{U(\xi,\eta,0)\}= \frac A2\text{sinc}(\ell
-f_Y)\left\{\text{sinc}(\ell f_X)+\frac
-m2\text{sinc}[\ell(f_X+f_0)]\right.
-\left.+\frac m2\mathrm{sinc}[\ell(f_X-f_0)]\right\}
-\end{gathered}\]</span></p>
-<p>夫琅禾费衍射图样： <span class="math display">\[\begin{aligned}
-U(x,y,z)=&amp; \frac{A}{\text{j}2\lambda
-z}\mathrm{e}^{\mathbf{j}kz}\mathrm{e}^{\mathbf{j}\frac{k}{2z}(x^2+y^2)}\mathrm{sinc}\left(\frac{\ell
-y}{\lambda z}\right)\left\{\mathrm{sinc}\left(\frac{\ell x}{\lambda
-z}\right)\right. \\ &amp;
-\left.+\frac{m}{2}\text{sinc}\left[\frac{\ell}{\lambda z}(x+f_0\lambda
-z)\right]+\frac{m}{2}\text{sinc}\left[\frac{\ell}{\lambda
-z}(x-f_0\lambda z)\right]\right\}
-\end{aligned}\]</span></p>
-<p>若孔径内有许多光栅周期，则<span
-class="math inline">\(f_{0}\gg1/\ell\)</span>，可以忽略三个 <span
-class="math inline">\(\text{sinc}\)</span> 函数的相互重叠，得出强度：
-<span class="math display">\[\begin{aligned}
-I(x,y,z)&amp; \begin{aligned}\approx&amp;\left[\frac{A}{2\lambda
-z}\right]^2\text{sinc}^2\left(\frac{\ell y}{\lambda
-z}\right)\left\{\text{sinc}^2\left(\frac{\ell x}{\lambda
-z}\right)\right.\end{aligned}  \\
-&amp;\left.+\frac{m^{2}}{4}\mathrm{sinc}^{2}\left[\frac{\ell}{\lambda
-z}(x+f_{0}\lambda
-z)\right]+\frac{m^{2}}{4}\mathrm{sinc}^{2}\left[\frac{\ell}{\lambda
-z}(x-f_{0}\lambda z)\right]\right\}
-\end{aligned}\]</span></p>
-<p><img src="https://s2.loli.net/2024/02/21/i96puz5VmMqW72X.png" /></p>
-<p><strong>光栅的衍射效率</strong>：入射光功率有多少份额出现在光栅的某个单一的衍射级（通常是+1级），可由<span
-class="math inline">\(\delta\)</span>函数的系数求平方得出： <span
-class="math display">\[\begin{aligned}
-&amp;\eta_{0}=0.25, \\
-&amp;\eta_{+1}=m^{2}/16, \\
-&amp;\eta_{-1}=m^{2}/16.
-\end{aligned}\]</span></p>
-<p>+1级至多携带入射功率的<span class="math inline">\(1/16 =
-6.25\%\)</span>，前三级效率加起来只有<span
-class="math inline">\(1/4+m^2/8\)</span>，别的都被光栅吸收而损失了。</p>
-<p>（相当于把入射光<strong>集中</strong>到中央级？）</p>
-<h4 id="薄正弦相位光栅">薄正弦相位光栅</h4>
-<p><span
-class="math display">\[t_\mathrm{A}(\xi,\eta)=\exp\left[\text{j}\frac{m}{2}\sin(2\pi
-f_0\xi)\right]\text{rect}\left(\frac{\xi}{\ell}\right)\text{rect}\left(\frac{\eta}{\ell}\right)\]</span></p>
-<p>利用恒等式 <span
-class="math display">\[\exp\left[\text{j}\frac{m}{2}\sin(2\pi
-f_{0}\xi)\right]=\sum_{q=-\infty}^{\infty}J_{q}\left(\frac{m}{2}\right)\exp(\text{j}2\pi
-qf_{0}\xi) \]</span> 简化分析，进行傅里叶展开 <span
-class="math display">\[\mathcal{F}\left\{\exp\left[\mathrm{j}\frac{m}{2}\sin(2\pi
-f_0\xi)\right]\right\}=\sum_{q=-\infty}^\infty
-J_q\left(\frac{m}{2}\right)\delta(f_X-qf_0,f_Y) \tag{1}\]</span> 有
-<span class="math display">\[\begin{aligned}
-\mathcal{F}\{U(\xi,\eta,0)\}&amp;
-=\mathcal{F}\{t_{\mathrm{A}}(\xi,\eta)\}  \\
-&amp;=[A\mathrm{sinc}(\ell f_X)\mathrm{sinc}(\ell
-f_Y)]*\left[\sum_{q=-\infty}^\infty J_q\left(\frac
-m2\right)\delta(f_X-qf_0,f_Y)\right] \\
-&amp;=\sum_{q=-\infty}^\infty AJ_q\left(\frac
-m2\right)\text{sinc}[\ell(f_X-qf_0)]\text{sinc}(\ell f_Y)
-\end{aligned}\]</span></p>
-<p><span
-class="math display">\[\begin{aligned}U(x,y,z)=&amp;\frac{A}{\mathrm{j}\lambda
-z}\mathrm{e}^{\mathrm{j}kz}\mathrm{e}^{\mathrm{i}\frac{k}{2z}(x^2+y^2)}\\\times&amp;\sum_{q=-\infty}^{\infty}J_q\left(\frac{m}{2}\right)\mathrm{sinc}\left[\frac{\ell}{\lambda
-z}(x-qf_0\lambda z)\right]\mathrm{sinc}\left(\frac{\ell y}{\lambda
-z}\right)\end{aligned}\]</span></p>
-<p>假设孔径内有光栅的多个周期（<span
-class="math inline">\(f_0\gg1/\ell\)</span>），则可以忽略不同级的重叠，得到强度：
-<span class="math display">\[I(x,y,z)\approx\left(\frac{A}{\lambda
-z}\right)^2\sum_{q=-\infty}^\infty
-J_q^2\left(\frac{m}2\right)\operatorname{sinc}^2\left[\frac{\ell}{\lambda
-z}(x-qf_0\lambda z)\right]\operatorname{sinc}^2\left(\frac{\ell
-y}{\lambda z}\right)\]</span></p>
-<p>从而，正弦相位光栅的引入将能量从零级衍射偏转到许多更高级衍射上去，<span
-class="math inline">\(q\)</span>级衍射的强度为<span
-class="math inline">\([AJ_q(m/2)/(\lambda
-z)]^2\)</span>，这一级距离衍射图样中心的距离为<span
-class="math inline">\(qf_0\lambda z\)</span></p>
-<p><img src="https://s2.loli.net/2024/02/21/kQBVueSKwqFyP9p.png" /></p>
-<p>式<span
-class="math inline">\((1)\)</span>中系数平方为薄正弦相位光栅的衍射效率：</p>
-<p><span class="math display">\[\eta_{q}=J_{q}^{2}(m/2)\]</span></p>
-<p><img src="https://s2.loli.net/2024/02/21/crTfxnZweoJq3Pa.png" /></p>
-<p>到达+1或-1级的最大衍射效率为<span
-class="math inline">\(J_1^2\)</span>的极大值，为<span
-class="math inline">\(33.8\%\)</span>，远高于正弦振幅光栅；</p>
-<p>光栅不吸收光功率，因此出现在各级上的功率之和为常数，等于孔径内的入射功率</p>
-<h4 id="计算光栅衍射效率的一般方法">计算光栅衍射效率的一般方法</h4>
-<p>用周期函数<span
-class="math inline">\(P(x)\)</span>表示光栅的振幅透射率（假设在y方向上是均匀的），将<span
-class="math inline">\(P(x)\)</span>展开为傅里叶级数 <span
-class="math display">\[P(x)=\sum_{q=-\infty}^{\infty}c_q\mathrm{e}^{\mathrm{j}2\pi
-qx/L}\]</span> <span
-class="math display">\[c_q=\frac{1}{L}\int_{-L/2}^{L/2}P(x)\mathrm{e}^{-\text{j}2\pi
-qx/L}\mathrm{d}x\]</span> 其中<span
-class="math inline">\(L\)</span>为光栅周期，于是<span
-class="math inline">\(q\)</span>级衍射效率为 <span
-class="math display">\[\eta_q = |c_q|^2\]</span></p>
-<p>从而可以计算任意薄光栅的各级衍射效率。</p>
-<h2 id="菲涅尔衍射计算">菲涅尔衍射计算</h2>
-<h3 id="塔尔博特像">塔尔博特像</h3>
-<p>正弦振幅光栅，忽略光栅的有限大小： <span
-class="math display">\[t_\mathrm{A}(\xi,\eta)=\frac12[1+m\cos(2\pi\xi/L)]\]</span></p>
-<p><img src="https://s2.loli.net/2024/02/21/jl5VZWsObkE3w1o.png" /></p>
-<p>对透射函数作傅里叶变换： <span
-class="math display">\[\mathcal{F}\{t_\mathrm{A}(\xi,\eta)\}=\frac12\delta(f_X,f_Y)+\frac
-m4\delta\left(f_X-\frac1L,f_Y\right)+\frac
-m4\delta\left(f_X+\frac1L,f_Y\right)\]</span></p>
-<p>经过化简， <span
-class="math display">\[U(x,y,z)=\frac12\left[1+m\mathrm{e}^{-\mathrm{j}\frac{\pi\lambda
-z}{L^2}}\cos\left(\frac{2\pi x}L\right)\right]\]</span> <span
-class="math display">\[\begin{aligned}I(x,y,z)&amp;=\frac14\left[1+2m\cos\left(\frac{\pi\lambda
-z}{L^2}\right)\cos\left(\frac{2\pi x}L\right)+m^2\cos^2\left(\frac{2\pi
-x}L\right)\right]\end{aligned}\]</span></p>
-<p>三类塔尔博特像： 1. <span class="math inline">\(\pi\lambda
-z/L^2=2n\pi\text{ 或 }z=2nL^2/\lambda\)</span> 时 <span
-class="math display">\[I\left(x,y,\frac{2nL^2}\lambda\right)=\frac14\left[1+m\cos\left(\frac{2\pi
-x}L\right)\right]^2\]</span></p>
-<pre><code>为光栅的一个理想的像，即紧贴光栅之后观察到的强度的精确复制。</code></pre>
-<ol start="2" type="1">
-<li><p><span class="math inline">\(\pi\lambda z/L^2=(2n+1)\pi\text{ 或
-}z=(2n+1)L^2/\lambda\)</span> <span
-class="math display">\[I\left(x,y,\frac{(2n+1)L^2}\lambda\right)=\frac14\bigg[1-m\cos\left(\frac{2\pi
-x}L\right)\bigg]^2\]</span></p>
-<p>光栅的像的180°相位相移，或等价地对比度反转。</p></li>
-<li><p><span class="math inline">\(\pi\lambda z/L^2=(2n+\frac
-12)\pi~\text{或 }z=\left(2n+\frac12\right)L^2/\lambda\)</span> <span
-class="math display">\[\begin{aligned}
-\begin{aligned}I\left(x,y,\frac{\left(n-\frac{1}{2}\right)L^2}{\lambda}\right)\end{aligned}&amp;
-=\frac14\left[1+m^2\cos^2\left(\frac{2\pi x}L\right)\right]  \\
-&amp;=\frac14\left[\left(1+\frac{m^2}2\right)+\frac{m^2}2\cos\left(\frac{4\pi
-x}L\right)\right]
-\end{aligned}\]</span></p>
-<p>像的频率加倍，但对比度减小。</p>
-<p><img
-src="https://s2.loli.net/2024/02/21/F2hRK9PtWHxkGM1.png" /></p></li>
-</ol>
-<h2 id="波束光学">波束光学</h2>
-<ul>
-<li>高斯光束</li>
-<li>厄米-高斯光束</li>
-<li>拉盖尔-高斯光束</li>
-<li>贝塞尔光束</li>
-</ul>
-<h1 id="计算衍射和计算传播">计算衍射和计算传播</h1>
-<p>有些衍射孔径不能用于衍射公式给出闭合形式的解析解，为确定衍射图样，需要依靠数值计算，传播方程的离散形式来讨论光场通过光学系统的传播：包括对孔径函数<span
-class="math inline">\(U(x,y,0)\)</span>进行密集抽样、将抽样值适当补零、对连续运算进行离散模拟。</p>
-<h2
-id="对空间置限的二次相位指数函数的抽样">对空间置限的二次相位指数函数的抽样</h2>
-<p>二次相位指数函数 <span
-class="math display">\[f(x)=\frac1{\sqrt{\lambda
-z}}\exp\left[\text{j}\frac\pi{\lambda z}x^2\right]\]</span>
-和它的二维等价物<span
-class="math inline">\(f(x)f(y)\)</span>频繁地出现在衍射问题中，需要对这个函数抽样。</p>
-<p>对函数作傅里叶变换， <span
-class="math display">\[F(f_X)=\frac{1}{\sqrt{\lambda
-z}}\int_{-\ell/2}^{\ell/2}\exp\left(\mathrm{j}\pi\frac{x^2}{\lambda
-z}\right)\exp(-\mathrm{j}2\pi xf_X)\mathrm{d}x\]</span></p>
-<p>然后用数值积分求这个结果的大小的模平方的等价带宽 <span
-class="math display">\[B_X=\frac{\int_{-\infty}^{\infty}|F(f_X)|^2\mathrm{d}f_X}{|F(0)|^2}\]</span>
-结果是菲涅尔数<span
-class="math inline">\(\begin{aligned}N_\mathrm{F}=(\ell/2)^2/(\lambda
-z)\end{aligned}\)</span>的函数： <img
-src="https://s2.loli.net/2024/02/22/3b5OsqDhYojNtyz.png" /></p>
-<p>带宽在<span class="math inline">\(N_F =
-0.25\)</span>两侧趋势不同，渐近线分别为</p>
-<p>右侧 <span class="math display">\[\sqrt{\lambda
-z}B_X=\sqrt{4N_{F}}\quad\text{或}\quad B_X=\frac\ell{\lambda
-z}\]</span></p>
-<p>左侧 <span class="math display">\[\sqrt{\lambda
-z}B_X=\frac{1}{\sqrt{4N_\mathrm{F}}}\quad\text{或}\quad
-B_X=\frac{1}{\ell}\]</span></p>
-<p>考虑到实际空间频率的占有率分布，避免混叠，改为<span
-class="math inline">\(B_X= M/\ell\)</span>，<span
-class="math inline">\(M\)</span>足够大</p>
-<p>样本间隔<span class="math inline">\(\Delta x \leq 1/B_X\)</span></p>
-<p><span class="math inline">\(N_F &gt; 0.25\)</span>时，抽样元素个数
-<span class="math display">\[K=\ell/\Delta x&gt;\frac{\ell^2}{\lambda
-z}=4N_\mathrm{F}\]</span></p>
-<p><span class="math inline">\(N_F &lt; 0.25\)</span>时， <span
-class="math display">\[K=\ell/\Delta x&gt;M\]</span></p>
-<h2 id="计算衍射的几种方法">计算衍射的几种方法</h2>
-<ul>
-<li>卷积法</li>
-<li>菲涅尔变换法</li>
-<li>菲涅尔传递函数法</li>
-<li>精确传递函数法</li>
-</ul>
-<h1 id="相干光学系统的波动光学分析">相干光学系统的波动光学分析</h1>
-<ul>
-<li>透镜</li>
-</ul>
-<h2 id="薄透镜作为相位变换器">薄透镜作为相位变换器</h2>
-<p>薄透镜：光线在透镜一面上(x,y)点射入，在另一面上从近似相同的坐标射出，忽略光线在透镜内部的侧向平移。</p>
-<p><img src="https://s2.loli.net/2024/02/24/tHZBIN2FRlnCyxr.png" /></p>
-<p>波在(x,y)点穿过透镜发生的总相位延迟为 <span
-class="math display">\[\begin{aligned}\phi(x,y)=kn\Delta(x,y)+k[\Delta_0-\Delta(x,y)]\end{aligned}\]</span>
-透镜的作用可用相位变换表示： <span
-class="math display">\[t_l(x,y)=\exp[\text{j}k\Delta_0]\exp[\text{j}k(n-1)\Delta(x,y)]\]</span>
-<span
-class="math display">\[U_l^{\prime}(x,y)=t_l(x,y)U_l(x,y)\]</span></p>
-<h3 id="厚度函数">厚度函数</h3>
-<p><img src="https://s2.loli.net/2024/02/24/vkXnouhAzicPrYE.png" /></p>
-<p>把厚度分成三部分： <span
-class="math display">\[\Delta(x,y)=\Delta_1(x,y)+\Delta_2(x,y)+\Delta_3(x,y)\]</span></p>
-<p>利用几何关系， <span
-class="math display">\[\Delta(x,y)=\Delta_0-R_1\left(1-\sqrt{1-\frac{x^2+y^2}{R_1^2}}\right)+R_2\left(1-\sqrt{1-\frac{x^2+y^2}{R_2^2}}\right)\]</span></p>
-<h3 id="傍轴近似">傍轴近似</h3>
-<p>傍轴光束：x、y值足够小</p>
-<p><span
-class="math display">\[\begin{aligned}\sqrt{1-\frac{x^2+y^2}{R_1^2}}&amp;\approx1-\frac{x^2+y^2}{2R_1^2},\\\sqrt{1-\frac{x^2+y^2}{R_2^2}}&amp;\approx1-\frac{x^2+y^2}{2R_2^2}.\end{aligned}\]</span></p>
-<p>相当于用抛物面（二次相位曲面）近似透镜的球面。在这样的近似下， <span
-class="math display">\[\Delta(x,y)=\Delta_0-\frac{x^2+y^2}2\left(\frac1{R_1}-\frac1{R_2}\right)\]</span></p>
-<h3 id="相位变换及其物理意义">相位变换及其物理意义</h3>
-<p>近似后， <span
-class="math display">\[t_l(x,y)=\exp[\text{j}kn\Delta_0]\exp\left[-\text{j}k(n-1)\frac{x^2+y^2}2\left(\frac1{R_1}-\frac1{R_2}\right)\right]\]</span></p>
-<p>定义<span class="math inline">\(f\)</span>， <span
-class="math display">\[\frac1f\equiv(n-1)\left(\frac1{R_1}-\frac1{R_2}\right)\]</span></p>
-<p>忽略常数相位因子，相位变换可改写为 <span
-class="math display">\[t_l(x,y)=\exp\left[-\text{j}\frac{k}{2f}(x^2+y^2)\right]=\exp\left[-\text{j}\frac{\pi}{\lambda
-f}(x^2+y^2)\right]\]</span></p>
-<p>此为薄透镜对入射光效应的基本表示式（忽略了透镜的有限大小）</p>
-<figure>
-<img src="https://s2.loli.net/2024/02/24/7Ucu9NgZQ8oThAY.png"
-alt="图片.png" />
-<figcaption aria-hidden="true">图片.png</figcaption>
-</figure>
-<p><span
-class="math inline">\(f\)</span>采取的符号规则可表示任意透镜：上三个为正，后三个为负</p>
-<p>利用薄透镜的光线传递矩阵，假设透镜前后材料折射率为1 <span
-class="math display">\[\mathbf{M}=\begin{bmatrix}1&amp;0\\\\-1/f&amp;1\end{bmatrix}\]</span></p>
-<p>入射波 <span
-class="math display">\[\vec{v}_1=\begin{bmatrix}y\\\\0\end{bmatrix}\]</span></p>
-<p>透射波 <span
-class="math display">\[\left.\vec{v_2}=\left[\begin{array}{cc}1&amp;0\\-1/f&amp;1\end{array}\right.\right]\begin{bmatrix}y\\0\end{bmatrix}=\begin{bmatrix}y\\-y/f\end{bmatrix}\]</span></p>
-<p>则光线角度<span class="math inline">\(\theta_2 =
--y/f\)</span>，波的局域空间频率 <span
-class="math display">\[f^{(l)}(y)=\frac{\theta_2}{\lambda}=-\frac{y}{\lambda
-f}\]</span> <span class="math display">\[(\theta_2 ≈
-\mathrm{sin}\theta_2)\]</span></p>
-<p><strong>由于局域空间频率对<span
-class="math inline">\(y\)</span>有一次线性关系，对其瞬时积分</strong>，透射波与入射波复振幅之比
-<span
-class="math display">\[t_l(y)=\exp\left[-\text{j}\frac{\pi}{\lambda
-f}y^2\right]\]</span></p>
-<p>回到二维，若透镜前的场分布<span
-class="math inline">\(U_l\)</span>等于1，透镜后的场 <span
-class="math display">\[U_l&#39;(x,y)=\exp\left[-\text{j}\frac{k}{2f}(x^2+y^2)\right]\]</span>
-可以理解为对球面波的二次相位近似。 -
-若焦距为正，则球面波向透镜轴后侧<span
-class="math inline">\(f\)</span>处<strong>会聚</strong>，正透镜； -
-若焦距为负，则球面波从透镜轴前<span
-class="math inline">\(f\)</span>处<strong>散开</strong>，负透镜。</p>
-<figure>
-<img src="https://s2.loli.net/2024/02/24/vo2XBMJpDlcKmCI.png"
-alt="图片.png" />
-<figcaption aria-hidden="true">图片.png</figcaption>
-</figure>
-<h3 id="相差">相差</h3>
-<p>将入射的平面波映射为球面波的结论，很大程度上依赖傍轴近似。在非傍轴条件下，理想球面的透镜会使出射波前产生<strong>像差</strong>；</p>
-<p>往往把透镜表面磨成非球面形状，减少出射波前对球面的偏离，从而校正像差</p>
-<h2 id="透镜的傅里叶变换性质">透镜的傅里叶变换性质</h2>
-]]></content>
-      <categories>
-        <category>教令院</category>
-      </categories>
-      <tags>
-        <tag>Optics</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>社会心理学</title>
     <url>/2024/02/29/College/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6/</url>
     <content><![CDATA[<p><del>结果心理系改组以后这门课（还有没上成的一堆别的课）停开，真成时代的眼泪了（哭）</del></p>
@@ -2480,6 +1555,931 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
       </categories>
       <tags>
         <tag>Psychology</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统，控制与应用数学</title>
+    <url>/2024/11/01/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/applied_math_and_control_theories/</url>
+    <content><![CDATA[<h1 id="laplace-变换">Laplace 变换</h1>
+<!-- 引入一个pdf ， 圆角10px ， 透明度0.8 ，默认隐藏工具栏 ，默认隐藏自身 -->
+<embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf' style="border-radius: 10px; opacity: 0.8;" hiddenToolbar="true">
+<h1 id="控制系统">控制系统</h1>
+]]></content>
+      <categories>
+        <category>往日之影</category>
+        <category>课上拾枝</category>
+        <category>24 Fall</category>
+        <category>24 Fall</category>
+      </categories>
+      <tags>
+        <tag>Automation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>傅里叶光学导论</title>
+    <url>/2024/02/01/College/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F/%E5%82%85%E9%87%8C%E5%8F%B6%E5%85%89%E5%AD%A6%E5%AF%BC%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="二维信号与系统分析">二维信号与系统分析</h1>
+<h2 id="二维傅里叶分析">二维傅里叶分析</h2>
+<p>一维傅里叶变换</p>
+<p><span
+class="math display">\[\mathcal{F}\{g\}=\int_{-\infty}^{\infty}g(x)\exp[-\mathrm{j}2\pi
+f x]\mathrm{d}x\]</span></p>
+<p><span
+class="math display">\[\mathcal{F}^{-1}\{G\}=\int_{-\infty}^{\infty}G(f)\exp[\mathrm{j}2\pi
+f x]\mathrm{d}f\]</span></p>
+<h3 id="二维傅里叶变换">二维傅里叶变换</h3>
+<p><span
+class="math display">\[\mathcal{F}\{g\}=\iint_{-\infty}^{\infty}g(x,y)\exp[-\mathrm{j}2\pi(f_Xx+f_Yy)]\mathrm{d}x\mathrm{d}y\]</span></p>
+<p><span
+class="math display">\[\mathcal{F}^{-1}\{G\}=\iint_{-\infty}^{\infty}G(f_X,f_Y)\exp[\mathrm{j}2\pi(f_Xx+f_Yy)]\mathrm{d}f_X\mathrm{d}f_Y\]</span></p>
+<h3 id="delta函数"><span class="math inline">\(\delta\)</span>函数</h3>
+<p><span class="math display">\[\delta(t)=\begin{cases}\infty, &amp;
+t=0\\0, &amp; t\neq0\end{cases}\]</span></p>
+<h4 id="例子">例子</h4>
+<h3 id="性质">性质</h3>
+<ol type="1">
+<li><p>线性： <span class="math display">\[\mathcal{F} \{ ag_1+bg_2
+\}=a\mathcal{F}\{g_1\}+b\mathcal{F}\{g_2\}\]</span></p></li>
+<li><p>相似性： <span
+class="math display">\[\mathcal{F}\{g(ax,by)\}=\frac{1}{|ab|}\mathcal{F}\{g\}(\frac{f_X}{a},\frac{f_Y}{b})\]</span></p></li>
+<li><p>相移： <span
+class="math display">\[\mathcal{F}\{g(x-a,y-b)\}=\exp[-\mathrm{j}2\pi(af_X+bf_Y)]\mathcal{F}\{g\}\]</span></p></li>
+<li><p>Parseval定理：</p>
+<p><span
+class="math display">\[\iint_{-\infty}^{\infty}|g(x,y)|^2\mathrm{d}x\mathrm{d}y=\iint_{-\infty}^{\infty}|G(f_X,f_Y)|^2\mathrm{d}f_X\mathrm{d}f_Y\]</span></p></li>
+<li><p>卷积定理： <span
+class="math display">\[\mathcal{F}\{g_1*g_2\}=\mathcal{F}\{g_1\}\cdot\mathcal{F}\{g_2\}\]</span></p></li>
+<li><p>自相关定理： <span
+class="math display">\[\mathcal{F}\{g*g\}=|\mathcal{F}\{g\}|^2\]</span></p></li>
+<li><p>转动定理： <span
+class="math inline">\(\mathcal{F}\{g(r,\theta)\}=G(\rho,\phi)\)</span>,
+在空间上旋转<span class="math inline">\(\theta_0\)</span>角度，</p>
+<p><span class="math inline">\(\mathcal{F}\{g(xcos\theta -ysin\theta,
+xsin\theta+ycos\theta)\}=G(f_Xcos\theta-f_Ysin\theta,
+f_Xsin\theta+f_Ycos\theta)\)</span></p></li>
+<li><p>剪切定理： <span class="math display">\[\mathcal{F} \{
+g(x+ay,y+bx) \} = G(f_X-bf_Y, f_Y-af_X)\]</span></p>
+<ul>
+<li>空域中的水平剪切引起频域中的竖直剪切</li>
+<li>空域中的竖直剪切引起频域中的水平剪切</li>
+</ul></li>
+<li><p>傅里叶积分定理：在<span
+class="math inline">\(g\)</span>的每个连续点上，</p>
+<p><span
+class="math display">\[\mathcal{F}\mathcal{F^{-1}}\{g(x,y)\}=\mathcal{F^{-1}}\mathcal{F}\{g(x,y)\}=g(x,y)\]</span></p></li>
+</ol>
+<h3 id="可分离变量的函数">可分离变量的函数</h3>
+<p>若 <span class="math inline">\(g(x,y)=g_X(x)g_Y(y)\)</span> ，则函数
+<span class="math inline">\(g(x,y)\)</span>
+是可分离变量的函数，极坐标<span
+class="math inline">\((r,\theta)\)</span>中同理。</p>
+<h4 id="性质-1">性质</h4>
+<p>傅里叶变换是两个一维傅里叶变换的乘积： <span
+class="math display">\[\mathcal{F}\{g(x,y)\}=\mathcal{F}\{g_X(x)g_Y(y)\}=\mathcal{F_X}\{g_X(x)\}\cdot\mathcal{F_{Y}}\{g_Y(y)\}\]</span></p>
+<p>极坐标系中同理。</p>
+<h3
+id="具有圆对称性的函数傅里叶-贝塞尔变换">具有圆对称性的函数：傅里叶-贝塞尔变换</h3>
+<p>函数 <span class="math inline">\(g\)</span> 具有圆对称性：<span
+class="math inline">\(g(r,\theta)=g_R(r)\)</span>。</p>
+<ul>
+<li>大部分光学系统具有圆对称性</li>
+</ul>
+<p>圆对称函数的傅里叶变换称为傅里叶-贝塞尔变换： <span
+class="math display">\[G_0(\rho,\phi)=G_o(\rho) =
+2\pi\int_0^{\infty}rg_R(r)J_0(2\pi r\rho)\mathrm{d}r\]</span></p>
+<p>其中<span class="math inline">\(J_0\)</span>是零阶贝塞尔函数。</p>
+<p>圆对称函数的傅里叶逆变换： <span
+class="math display">\[g_R(r)={2\pi}\int_0^{\infty}\rho
+G_0(\rho)J_0(2\pi\rho r)\mathrm{d}\rho\]</span></p>
+<p>对于圆对称函数，变换和逆变换是相同的。</p>
+<h3 id="性质-2">性质</h3>
+<ol type="1">
+<li><p>在<span class="math inline">\(g_R(r)\)</span>的每个连续点上，
+<span
+class="math display">\[\mathcal{B}\mathcal{B^{-1}}\{g_R(r)\}=\mathcal{B^{-1}}\mathcal{B}\{g_R(r)\}=\mathcal{B}\mathcal{B}\{g_R(r)\}
+= g_R(r)\]</span></p></li>
+<li><p>相似性：<span class="math inline">\(\mathcal{B} \{ g_R(ar) \} =
+\frac{1}{a^2}G_0(\frac{\rho}{a})\)</span></p></li>
+</ol>
+<h2 id="常用函数和傅里叶变换对">常用函数和傅里叶变换对</h2>
+<h3 id="矩形函数">矩形函数</h3>
+<p><span class="math display">\[rect(x) = \begin{cases}1, &amp;
+|x|&lt;\frac{1}{2}\\\frac{1}{2}, &amp; |x|=\frac{1}{2}\\0, &amp;
+|x|&gt;\frac{1}{2}\end{cases}\]</span></p>
+<h3 id="sinc函数">sinc函数</h3>
+<p><span class="math display">\[sinc(x)=\frac{\sin(\pi x)}{\pi
+x}\]</span></p>
+<h3 id="符号函数">符号函数</h3>
+<p><span class="math display">\[sgn(x)=\begin{cases}1, &amp; x&gt;0\\0,
+&amp; x=0\\-1, &amp; x&lt;0\end{cases}\]</span></p>
+<h3 id="三角形函数">三角形函数</h3>
+<p><span class="math display">\[tri(x)=\begin{cases}1-|x|, &amp;
+|x|&lt;1\\0, &amp; |x|&gt;1\end{cases}\]</span></p>
+<h3 id="梳状函数">梳状函数</h3>
+<p><span
+class="math display">\[comb(x)=\sum_{n=-\infty}^{\infty}\delta(x-n)\]</span></p>
+<h3 id="圆域函数">圆域函数</h3>
+<p><span class="math display">\[circ\sqrt{x^2+y^2}=\begin{cases}1, &amp;
+\sqrt{x^2+y^2}&lt;1\\\frac{1}{2}, &amp; \sqrt{x^2+y^2}=1\\0, &amp;
+\sqrt{x^2+y^2}&gt;1\end{cases}\]</span></p>
+<h2 id="空间频率和空间频率局域化">空间频率和空间频率局域化</h2>
+<h3 id="局域空间频率">局域空间频率</h3>
+<p><span class="math display">\[g(x,y) = a(x,y)
+exp[\mathrm{j}\phi(x,y)]\]</span></p>
+<p>其中<span class="math inline">\(a(x,y)\)</span>是幅度函数，<span
+class="math inline">\(\phi(x,y)\)</span>是相位函数。</p>
+<p>定义函数<span class="math inline">\(g\)</span>的局域空间频率<span
+class="math inline">\((f_X^{(l)},f_Y^{(l)})\)</span>为：</p>
+<p><span
+class="math inline">\(\begin{cases}f_X^{(l)}(x,y)=\frac{1}{2\pi}\frac{\partial}{\partial
+x}\phi(x,y) \\ f_Y^{(l)}(x,y)=\frac{1}{2\pi}\frac{\partial}{\partial
+y}\phi(x,y)\end{cases}\)</span></p>
+<p>或矢量记号：<span
+class="math inline">\(\vec{f}^{(\ell)}=\frac{1}{2\pi}\nabla\phi(\vec{x})\)</span></p>
+<p>从而定义一个<strong>局域空间频率</strong>，</p>
+<ul>
+<li><p>依赖于空间的周期 <span
+class="math display">\[P(x,y)=\frac{1}{\sqrt{f_X^{(l)2}+f_Y^{(l)2}}}\]</span></p></li>
+<li><p>与x轴的夹角 <span
+class="math display">\[\phi(x,y)=\arctan\frac{f_Y^{(l)}}{f_X^{(l)}}\]</span></p></li>
+</ul>
+<h3 id="维格纳分布">维格纳分布</h3>
+<p>一个函数<span
+class="math inline">\(g(x,y)\)</span>的局域空间频率分布称为维格纳分布，定义为：
+<span
+class="math display">\[W_g(x,y;f_X,f_Y)=\iint_{-\infty}^{\infty}g(x+\frac{\Delta
+x}{2},y+\frac{\Delta y}{2})g^*(x-\frac{\Delta x}{2},y-\frac{\Delta
+y}{2})\exp[-j2\pi(f_X\Delta x+f_Y\Delta y)]\mathrm{d}\Delta
+x\mathrm{d}\Delta y\]</span></p>
+<p>将 <span class="math inline">\(g\)</span> 和 <span
+class="math inline">\(g^*\)</span> 的傅里叶变换分别记为 <span
+class="math inline">\(G(f_X,f_Y)\)</span> 和 <span
+class="math inline">\(G^*(f_X,f_Y)\)</span>，则维格纳分布可以表示为：</p>
+<p><span
+class="math display">\[W_g(x,y;f_X,f_Y)=\iint_{-\infty}^{\infty}G(f_X+\frac{\Delta
+f_X}{2},f_Y+\frac{\Delta f_Y}{2})G^*(f_X-\frac{\Delta
+f_X}{2},f_Y-\frac{\Delta f_Y}{2})\exp[j2\pi(x\Delta f_X +y\Delta
+f_Y\Delta)]\mathrm{d}\Delta f_X\mathrm{d}\Delta f_Y\]</span></p>
+<p>作为能量密度函数：</p>
+<p><span class="math display">\[\iint_{- \infty}^{\infty}
+W_g(x,y;f_X,f_Y)df_Xdf_Y=|g(x,y)|^2\]</span></p>
+<p><span class="math display">\[\iint_{-\infty}^{\infty}
+W_g(x,y;f_X,f_Y)dx dy=|G(f_X,f_Y)|^2\]</span></p>
+<p><span class="math display">\[\iint\iint_{-\infty}^{\infty}
+W_g(x,y;f_X,f_Y)dx dy df_X df_Y=\iint_{-\infty}^{\infty}|g(x,y)|^2dx
+dy=\iint_{-\infty}^{\infty}|G(f_X,f_Y)|^2df_X df_Y\]</span></p>
+<h2 id="线性系统">线性系统</h2>
+<p>电路网络：输入输出信号是一元（时间）独立的实值函数；</p>
+<p>成像系统：输入和输出信号可以是二元（空间）独立的实值函数（光强），也可以是复值函数（光场）。</p>
+<h3 id="线性不变系统">线性不变系统</h3>
+<ul>
+<li>线性时不变系统：一个系统的脉冲响应<span class="math inline">\(h(t,
+\tau)\)</span>（即在<span
+class="math inline">\(t\)</span>时刻对作用于<span
+class="math inline">\(\tau\)</span>时刻的脉冲的响应）只依赖于时间差<span
+class="math inline">\(t-\tau\)</span>。</li>
+<li>空间不变系统（等晕系统）：一个系统的脉冲响应<span
+class="math inline">\(h(x,y, \xi, \eta)\)</span>（即在<span
+class="math inline">\((x,y)\)</span>时刻对作用于<span
+class="math inline">\((\xi,
+\eta)\)</span>时刻的脉冲的响应）只依赖于距离<span
+class="math inline">\((x-\xi, y-\eta)\)</span>，即<span
+class="math inline">\(h(x,y, \xi, \eta)=h(x-\xi, y-\eta)\)</span>。</li>
+</ul>
+<p>对于不变系统，叠加积分可简化为卷积积分：</p>
+<p><span
+class="math display">\[g_2(x,y)=\iint_{-\infty}^{\infty}g_1(\xi,
+\eta)h(x-\xi, y-\eta)\mathrm{d}\xi\mathrm{d}\eta\]</span></p>
+<p>即 <span class="math display">\[g_2=g_1*h\]</span></p>
+<p>对上式两边进行傅里叶变换，再将简单计算得到的左式进行逆变换，从而降低计算复杂度。
+<span class="math display">\[G_2(f_X, f_Y)=G_1(f_X, f_Y)H(f_X,
+f_Y)\]</span> 其中<span
+class="math inline">\(H\)</span>是系统的传递函数，表示系统在频率域的响应（只适用于线性不变系统）。</p>
+<h2 id="二维抽样理论">二维抽样理论</h2>
+<h3 id="whittlaker-shannon抽样定理">Whittlaker-Shannon抽样定理</h3>
+<p>间隔合适的矩形阵列上的抽样值，可以完全精确地复原一个限带函数 -
+二维情况： <span
+class="math display">\[g(x,y)=\sum_{n=-\infty}^{\infty}\sum_{m=-\infty}^{\infty}g(\frac{n}{B_X},
+\frac{m}{B_Y})\cdot
+sinc[B_X(x-\frac{n}{B_X})]sinc[B_Y(y-\frac{m}{B_Y})]\]</span></p>
+<h3 id="过抽样欠抽样和频谱混淆">过抽样、欠抽样和频谱混淆</h3>
+<ul>
+<li>奈奎斯特密度：对于一个有限带宽的信号，允许信号复原的最小抽样密度（临界抽样密度）。</li>
+<li>过抽样：以高于奈奎斯特密度的抽样密度进行抽样，保证频率岛不重叠</li>
+<li>欠抽样：以低于奈奎斯特密度的抽样密度进行抽样，导致频率岛重叠，无法复原原始信号。若在频谱中只有孤立的零点，欠抽样是不可避免的</li>
+</ul>
+<h3 id="空间-带宽积">空间-带宽积</h3>
+<p>带宽：信号的频率范围</p>
+<p>空间带宽积：一个信号的空间带宽积是指信号的空间频率和频率的乘积。
+<span class="math display">\[N = L_X\cdot L_Y\cdot B_X\cdot
+B_Y\]</span></p>
+<h3 id="离散傅里叶变换">离散傅里叶变换</h3>
+<p>利用抽样数据，得到离散傅里叶变换（DFT）： <span
+class="math display">\[\tilde{G}_{p,q}=DFT\{\tilde{g}_{n,m}\} =
+\sum_{n=0}^{N_X-1}\sum_{m=0}^{N_Y-1}\tilde{g}_{n,m}\exp\left[-\mathrm{j}2\pi\left(\frac{np}{N_X}+\frac{mq}{N_Y}\right)\right]\]</span></p>
+<p>逆变换：</p>
+<p><span
+class="math display">\[\tilde{g}_{n,m}=DFT^{-1}\{\tilde{G}_{p,q}\} =
+\frac{1}{N_XN_Y}\sum_{p=0}^{N_X-1}\sum_{q=0}^{N_Y-1}\tilde{G}_{p,q}\exp\left[\mathrm{j}2\pi\left(\frac{np}{N_X}+\frac{mq}{N_Y}\right)\right]\]</span></p>
+<p>可用快速傅里叶变换（FFT）算法进行计算，复杂度为<span
+class="math inline">\(O(N\log N)\)</span>。</p>
+<h2 id="片投影定理">片投影定理</h2>
+<p>二维函数<span
+class="math inline">\(g(x,y)\)</span>在过原点且与x轴夹角为<span
+class="math inline">\(\theta\)</span>的直线上的投影为 <span
+class="math display">\[p_{\theta}(x&#39;)=\int_{-\infty}^{\infty}g(x&#39;cos\theta-y&#39;sin\theta,
+x&#39;sin\theta+y&#39;cos\theta)\mathrm{d}y&#39;\]</span></p>
+<ul>
+<li>投影在x'轴上，y'轴垂直于x'轴，其中</li>
+</ul>
+<p><span
+class="math inline">\(x&#39;=x\cos\theta+y\sin\theta\)</span>,</p>
+<p><span
+class="math inline">\(y&#39;=-x\sin\theta+y\cos\theta\)</span></p>
+<p>投影定理：投影 <span
+class="math inline">\(p_{\theta}(x&#39;)\)</span> 的傅里叶变换 <span
+class="math inline">\(P_{\theta}(f)\)</span> 等同于函数 <span
+class="math inline">\(g(x,y)\)</span> 的傅里叶变换 <span
+class="math inline">\(G(f_X, f_Y)\)</span> 沿着过原点且与<span
+class="math inline">\(f_X\)</span>轴夹角为<span
+class="math inline">\(\theta\)</span>的直线的切片： <span
+class="math display">\[P_{\theta}(f)=G(f\cos\theta,
+f\sin\theta)\]</span></p>
+<h1 id="标量衍射理论基础">标量衍射理论基础</h1>
+<p>讨论衍射时，衍射物的结构比光波波长大得多，因此可以用标量波动方程来描述光波的传播（矢量近似为标量）。</p>
+<h2 id="数学预备知识">数学预备知识</h2>
+<h3 id="亥姆霍兹方程">亥姆霍兹方程</h3>
+<p>对于单色波，用标量场<span
+class="math inline">\(u(P,t)\)</span>描述在P点、t时刻的波动， <span
+class="math display">\[u(P,t)=Re\{A(P)\exp[\mathrm{j}(-2\pi \nu
+t+\phi(P))]\}\]</span></p>
+<p>其中<span class="math inline">\(A(P)\)</span>是振幅，<span
+class="math inline">\(\phi(P)\)</span>是相位，<span
+class="math inline">\(\nu\)</span>是光的频率。</p>
+<p>标量波动方程： <span
+class="math display">\[\nabla^2u-\frac{n^2}{c^2}\frac{\partial^2u}{\partial
+t^2}=0\]</span></p>
+<p><span class="math inline">\(\nabla^2\)</span>是拉普拉斯算子，<span
+class="math inline">\(n\)</span>是介质折射率，<span
+class="math inline">\(c\)</span>是光速。</p>
+<p>结合两式得到<strong>亥姆霍兹方程</strong>： <span
+class="math display">\[(\nabla^2+k^2)u=0\]</span></p>
+<p>其中<span class="math inline">\(k=2\pi n \frac{\nu}{c} =
+\frac{2\pi}{\lambda}\)</span>是波数。</p>
+<p>假定任何电介质中传播的单色光扰动的复振幅都遵从亥姆霍兹方程。</p>
+<h3 id="格林定理">格林定理</h3>
+<p>格林定理：对于任意两个函数<span
+class="math inline">\(U(P)\)</span>和<span
+class="math inline">\(V(P)\)</span>，在有限区域内的体积分可以转化为体积分和边界积分的和：
+<span
+class="math display">\[\iiint_V\left(U\nabla^2V-V\nabla^2U\right)\mathrm{d}v=\oint_S\left(U\frac{\partial
+V}{\partial n}-V\frac{\partial U}{\partial
+n}\right)\mathrm{d}s\]</span></p>
+<p>其中<span class="math inline">\(S\)</span>是体积<span
+class="math inline">\(V\)</span>的边界，<span
+class="math inline">\(\frac{\partial}{\partial
+n}\)</span>是沿着边界的外法线方向的梯度。</p>
+<h3 id="亥姆霍兹和基尔霍夫积分定理">亥姆霍兹和基尔霍夫积分定理</h3>
+<p>基尔霍夫的衍射理论建立在一个积分定理的基础上，这个积分定理把齐次波动方程在任意一点的解用包围这一点的任意闭合曲面上的解及其一阶导数的值来表示。</p>
+<p><img src="https://s2.loli.net/2024/02/17/qtfs7Ayvea9W3mL.png" /></p>
+<p>选定辅助函数（由<span
+class="math inline">\(P_0\)</span>点向外发散的单位振幅的球面波，自由空间格林函数）
+<span class="math display">\[G(P_1) =
+\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\]</span></p>
+<p>积分体积<span class="math inline">\(V&#39;\)</span>为介于<span
+class="math inline">\(S\)</span>和<span
+class="math inline">\(S_{\epsilon}\)</span>之间的体积，积分曲面是复合曲面<span
+class="math inline">\(S&#39; = S + S_{\epsilon}\)</span></p>
+<p>结合亥姆霍兹方程&amp;格林定理，可得<strong>亥姆霍兹和基尔霍夫的积分定理</strong>：</p>
+<p><span
+class="math display">\[U(P_{0})=\frac1{4\pi}\iint_{S}\left\{\frac{\partial
+U}{\partial
+n}\left[\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\right]-U\frac\partial{\partial
+n}\left[\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\right]\right\}\mathrm{d}s\]</span></p>
+<p>从而使任意一点的场可以用波在包围这一点的任意闭合曲面上的“边值”表示。</p>
+<h2 id="平面屏幕衍射的基尔霍夫公式">平面屏幕衍射的基尔霍夫公式</h2>
+<p><img src="https://s2.loli.net/2024/02/17/Vmq5kHOS2uX4GYz.png" /></p>
+<p><img src="https://s2.loli.net/2024/02/17/8MVuwrdY5tNKf6k.png" /></p>
+<p>由一个发散的球面波照明时成立，<strong>菲涅耳-基尔霍夫衍射公式</strong>：</p>
+<p><span class="math display">\[U(P_0)=\frac
+A{\mathrm{j}\lambda}\int\int_\Sigma\frac{\exp[\mathrm{j}k(r_{21}+r_{01})]}{r_{21}r_{01}}\left[\frac{\cos(\vec{n},\vec{r}_{01})-\cos(\vec{n},\vec{r}_{21})}2\right]\mathrm{d}s\]</span></p>
+将衍射公式改写成如下形式： $$
+<span class="math display">\[\begin{gathered}
+\begin{aligned}U(P_{0})=\iint_{\Sigma}\tilde{U}(P_{1})\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\mathrm{d}s,\end{aligned}
+\\
+\tilde{U}(P_{1})=\frac{1}{\mathrm{j}\lambda}\left[\frac{A\operatorname{exp}(\mathrm{j}kr_{21})}{r_{21}}\right]\left[\frac{\operatorname{cos}(\vec{n},\vec{r}_{01})-\operatorname{cos}(\vec{n},\vec{r}_{21})}{2}\right]
+\end{gathered}\]</span>
+<p>$$</p>
+<p>可以理解为：<span
+class="math inline">\(P_0\)</span>的场是由位于孔径<span
+class="math inline">\(\Sigma\)</span>内的无穷多个虚拟的“次级”点源产生的。次级波源具有确定的振幅和相位，表示为<span
+class="math inline">\(\tilde{U}(P_1)\)</span>，与照明波前、照明方向和观察方向有关。</p>
+<p>上述公式限于孔径由单个扩散球面波照明的情形，下面的<strong>瑞利-索末菲理论</strong>可以取消这一限制。</p>
+<h2 id="瑞利-索末菲衍射公式">瑞利-索末菲衍射公式</h2>
+<p>索末菲消除了基尔霍夫衍射理论中同时对波动及其法向导数施加边界条件的不自洽性。</p>
+<p>重新选择格林函数<span
+class="math inline">\(G\)</span>，引入镜像对称点源<span
+class="math inline">\(\tilde{P}_0\)</span>，波长同为<span
+class="math inline">\(\lambda\)</span>，且相位差为180°，有 <span
+class="math display">\[G_{-}(P_{1})=\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}-\frac{\exp(\mathrm{j}k\tilde{r}_{01})}{\tilde{r}_{01}}\]</span></p>
+<p>得到<strong>第一种瑞利-索末菲解</strong>： <span
+class="math display">\[U_1\left(P_0\right)=\frac1{\text{j}\lambda}\iint_{\Sigma}U(P_1)\frac{\exp(\text{j}kr_{01})}{r_{01}}\cos(\vec{n},\vec{r}_{01})\mathrm{d}s\\r_{01}&gt;&gt;\lambda\]</span></p>
+<p>使两点源同相振动，得到<strong>第二种瑞利-索末菲解</strong>： <span
+class="math display">\[G_{+}(P_{1})=\frac{\exp(\text{j}kr_{\text{O}1})}{r_{01}}+\frac{\exp(\text{j}k\widetilde{r}_{\text{O}1})}{\widetilde{r}_{01}}\]</span>
+<span
+class="math display">\[U_{\Pi}\left(P_{0}\right)=-\frac{A}{\mathrm{j}\lambda}\int\int_{\Sigma}\frac{\exp[\mathrm{j}k(r_{21}+r_{01})]}{r_{21}r_{01}}\cos(\vec{n},\vec{r}_{21})\mathrm{d}s\\r_{21}&gt;&gt;\lambda\]</span></p>
+<h2
+id="基尔霍夫理论和瑞利-索末菲理论的比较">基尔霍夫理论和瑞利-索末菲理论的比较</h2>
+<ol type="1">
+<li><p>在<span class="math inline">\(\Sigma\)</span>面上， <span
+class="math display">\[G_+ = 2G_K, \ \ \
+\frac{\partial G_-}{\partial n} = \frac{\partial G_K}{\partial
+n}\]</span></p></li>
+<li><p>基尔霍夫解是两种瑞利-索末菲解的算术平均。</p></li>
+</ol>
+<p>定义倾斜因子<span
+class="math inline">\(\psi\)</span>，将三种理论统一： <span
+class="math display">\[U(P_{0})=\frac{A}{\text{j}\lambda}\iint_{\Sigma}\frac{\exp[\text{j}k(r_{21}+r_{01})]}{r_{21}r_{01}}\psi\text{d}s\]</span></p>
+<p>其中 <span
+class="math display">\[\left.\psi=\left\{\begin{array}{l}\frac{1}{2}[\cos(\vec{n},\vec{n}_{01})-\cos(\vec{n},\vec{r}_{21})],\text{基尔霍夫理论}\\\\\cos(\vec{n},\vec{r}_{01}),\text{第一种瑞利-索末菲理论}\\\\-\cos(\vec{n},\vec{r}_{21}),\text{第二种瑞利-索末菲理论}\end{array}\right.\right.\]</span></p>
+<p>对于无限远处的点光源产生的正入射平面波， <span
+class="math display">\[\left.\psi=\left\{\begin{array}{l}\frac{1}{2}[1+\cos\theta],\text{基尔霍夫理论}\\\\\cos\theta,\text{第一种瑞利-索末菲理论}\\\\1,\text{第二种瑞利-索末菲理论}\end{array}\right.\right.\]</span></p>
+<h2
+id="惠更斯-菲涅耳原理的进一步讨论">惠更斯-菲涅耳原理的进一步讨论</h2>
+<p>第一种瑞利-索末菲解可以作为惠更斯-菲涅耳原理的数学表述： <span
+class="math display">\[U(P_{0})=\frac1{\text{j}\lambda}\iint_{\Sigma}U(P_{1})\frac{\exp(\text{j}kr_{01})}{r_{01}}\cos
+\theta\text{d}s\]</span></p>
+<p>将观察到的场<span class="math inline">\(U(P_0)\)</span>表示为<span
+class="math inline">\(\Sigma\)</span>面上各点<span
+class="math inline">\(P_1\)</span>的次级波源发出的发散球面波的叠加。<span
+class="math inline">\(P_1\)</span>点上的次级波源具有如下性质： -
+复振幅与相应点上的原波振幅成正比 - 振幅与波长<span
+class="math inline">\(\lambda\)</span>成反比 - 因子<span
+class="math inline">\(1/\text{j}\)</span>表示次级波源的相位比原波相位超前<span
+class="math inline">\(\pi/2\)</span> -
+每个次级波源有一个指向形式图样<span
+class="math inline">\(\cos\theta\)</span></p>
+<p>惠更斯-菲涅耳原理的数学表示，本质上是叠加积分：把上式重写为 <span
+class="math display">\[U(P_0)=\iint_{\Sigma}h(P_0,P_1)U(P_1)\mathrm{d}s\]</span></p>
+<p>其中脉冲响应函数<span
+class="math inline">\(h(P_0,P_1)\)</span>在近似解中给出： <span
+class="math display">\[h(P_0,P_1)=\frac{1}{\text{j}\lambda}\frac{\exp(\mathrm{j}kr_{01})}{r_{01}}\cos\theta\]</span></p>
+<h2 id="推广到非单色波">推广到非单色波</h2>
+<p>利用傅里叶变换，可以将单色波的衍射综合出非单色波的衍射。 <span
+class="math display">\[u(P_0,t)=\iint_{\Sigma}\frac{\cos(\vec{n},\vec{r}_{01})}{2\pi
+vr_{01}}\frac{\mathrm{d}}{\mathrm{d}t}u\left(P_1,t-\frac{r_{01}}{v}\right)\mathrm{d}s\]</span></p>
+<h2 id="边界上的衍射">边界上的衍射</h2>
+<p>托马斯-杨：当光波通过一个有限孔径时，光波的边界会产生衍射，屏幕后的场由边界的衍射和直接透射的入射波叠加而成。</p>
+<p>相较于惠更斯-菲涅耳原理，边界衍射更符合实际情况。</p>
+<h2 id="平面波的角谱">平面波的角谱</h2>
+<p>······</p>
+<h1 id="菲涅耳衍射与夫琅禾费衍射">菲涅耳衍射与夫琅禾费衍射</h1>
+<p>普遍理论的近似（菲涅耳近似、夫琅禾费近似）。用比较简单的数学运算来计算衍射图样。</p>
+<h2 id="背景">背景</h2>
+<h3 id="波场强度">波场强度</h3>
+<p>利用功率表示波的强度 <span
+class="math display">\[I(P)=|U(P)|^2\]</span> 或非单色的窄带波 <span
+class="math display">\[I(P)=\left\langle|u(P,t)|^2\right\rangle
+\]</span></p>
+<p>计算衍射图样时，认为要求的量就是波的强度。</p>
+<h3
+id="直角坐标系中的惠更斯-菲涅耳原理">直角坐标系中的惠更斯-菲涅耳原理</h3>
+<p><img src="https://s2.loli.net/2024/02/20/7DtHvWeN4pAod59.png" /></p>
+<p>惠更斯-菲涅耳原理：</p>
+<p><span
+class="math display">\[U(P_{0})=\frac{1}{\text{j}\lambda}\iint_{\Sigma}U(P_{1})\frac{\exp(\text{j}kr_{01})}{r_{01}}\cos\theta\mathrm{d}s\]</span></p>
+<p><span class="math display">\[\cos \theta =
+\frac{z}{r_{01}}\]</span></p>
+<p>因此</p>
+<p><span
+class="math display">\[U(x,y)=\frac{z}{\text{j}\lambda}\iint_{\Sigma}U(\xi,\eta)\frac{\exp(\text{j}kr_{01})}{r_{01}^2}\mathrm{d}\xi\mathrm{d}\eta\]</span></p>
+<p><span
+class="math display">\[r_{01}=\sqrt{z^2+\left(x-\xi\right)^2+\left(y-\eta\right)^2}\]</span></p>
+<h2 id="菲涅耳近似">菲涅耳近似</h2>
+<p>将<span
+class="math inline">\(r_{01}=\sqrt{z^2+\left(x-\xi\right)^2+\left(y-\eta\right)^2}\)</span>展开，保留到2阶：</p>
+<p><span class="math display">\[r_{01}\approx
+z\left[1+\frac12\left(\frac{x-\xi}z\right)^2+\frac12\left(\frac{y-\eta}z\right)^2\right]\]</span></p>
+<p>近似后得到 <span class="math inline">\(U(x,y,z)\)</span> <span
+class="math display">\[U(x,y,z)=\frac{\mathrm{e}^{jkz}}{\mathrm{j}\lambda
+z}\iint_{-\infty}^{\infty}U(\xi,\eta,0)\exp\left\{\text{j}\frac{k}{2z}[(x-\xi)^2+(y-\eta)^2]\right\}\mathrm{d}\xi\mathrm{d}\eta
+\]</span></p>
+<p>可表示为卷积形式： <span
+class="math display">\[U(x,y,z)=\iint_{-\infty}^{\infty}U(\xi,\eta,0)h(x-\xi,y-\eta)\mathrm{d}\xi\mathrm{d}\eta
+\]</span> <span
+class="math display">\[\begin{aligned}h(x,y)=\frac{\mathrm{e}^{\mathrm{j}kz}}{\mathrm{j}\lambda
+z}\exp\left[\frac{\mathrm{j}k}{2z}(x^2+y^2)\right]\end{aligned}\]</span></p>
+<p>将<span
+class="math inline">\(\exp\left[\frac{\text{j}k}{2z}(x^2+y^2)\right]\)</span>项提出积分外：</p>
+<p><span class="math display">\[\begin{aligned}
+U(x,y,z)=&amp; \frac{\mathrm{e}^{\mathrm{j}kz}}{\mathrm{j}\lambda
+z}\mathrm{e}^{\mathrm{j}\frac{k}{2z}(x^{2}+y^{2})}\iint_{-\infty}^{\infty}\left[U(\xi,\eta,0)\mathrm{e}^{\mathrm{j}\frac{k}{2z}(\xi^{2}+\eta^{2})}\right]  
+\times\mathrm{e}^{-\mathrm{j}\frac{2\pi}{\lambda
+z}(x\xi+y\eta)}\mathrm{d}\xi\mathrm{d}\eta
+\end{aligned}\]</span></p>
+<p>可见，它是紧靠孔径右方复场<span
+class="math inline">\(U(\xi,\eta,0)\)</span>的傅里叶变换。</p>
+<p>上述表达式为<strong>菲涅耳衍射积分</strong>。</p>
+<h3
+id="通过光线传递矩阵表示菲涅耳衍射">通过光线传递矩阵表示菲涅耳衍射</h3>
+<p>光线传递矩阵：</p>
+<p><img src="https://s2.loli.net/2024/02/20/lVtWCHXw1GL8BRx.png" /></p>
+<p><span
+class="math display">\[\begin{bmatrix}y_2\\\\\hat{\theta}_2\end{bmatrix}=\begin{bmatrix}A&amp;B\\\\C&amp;D\end{bmatrix}\begin{bmatrix}y_1\\\\\hat{\theta}_1\end{bmatrix}\]</span></p>
+<p>光在穿过不是自由空间，而是有任意光线传递矩阵的系统时，相应的脉冲响应和衍射公式：
+<span
+class="math display">\[h(y_2,y_1)=\frac{\mathrm{e}^{\mathrm{i}k_0L_0}}{\sqrt{\mathrm{j}B\lambda_0}}\exp\left[\mathrm{j}\frac{\pi}{B\lambda_0}(Ay_1^2-2y_1y_2+Dy_2^2)\right]\]</span>
+<span
+class="math display">\[U_2(y_2)=\frac{\mathrm{e}^{\mathbf{j}k_0L_0}}{\sqrt{\mathbf{j}B\lambda_0}}\int_{-\infty}^\infty
+U_1(y_1)\exp\left[\frac{\mathbf{j}\pi}{B\lambda_0}(Ay_1^2-2y_1y_2+Dy_2^2)\right]\mathrm{d}y_1\]</span></p>
+<h2 id="夫琅禾费近似">夫琅禾费近似</h2>
+<p>更强的近似：夫琅禾费近似 <span
+class="math display">\[z\gg\frac{k(\xi^2+\eta^2)_{\max}}2\]</span></p>
+<p>则菲涅耳式中积分号下的二次相位因子 <span
+class="math inline">\(\mathrm{e}^{\mathrm{j}\frac{k}{2z}(\xi^{2}+\eta^{2})}\)</span>
+近似为1，则场强可由孔径上的场分布本身的傅里叶变换直接求出。</p>
+<p>在夫琅禾费衍射区（远场内），</p>
+<p><span
+class="math display">\[U(x,y,z)=\frac{\mathrm{e}^{\mathrm{i}kz}\mathrm{e}^{\mathrm{i}\frac
+k{2z}(x^2+y^2)}}{\mathrm{j}\lambda z}\iint_{-\infty}^\infty
+U(\xi,\eta,0)\mathrm{exp}\left[-\mathrm{j}\frac{2\pi}{\lambda
+z}(x\xi+y\eta)\right]\mathrm{d}\xi\mathrm{d}\eta \]</span></p>
+<p>除了积分号前的相位因子外，这个式子简单地是孔径上的场分布的傅里叶变换。空间频率
+<span class="math display">\[f_X=\frac x{\lambda z} \\ \ \\ f_Y=\frac
+y{\lambda z}\]</span></p>
+<h3 id="夫琅禾费衍射图样">夫琅禾费衍射图样</h3>
+<h4 id="矩形孔">矩形孔</h4>
+<p>矩形孔径，振幅透射率为 <span
+class="math display">\[t_\mathrm{A}(\xi,\eta)=\mathrm{rect}\left(\frac{\xi}{\ell_X}\right)\mathrm{rect}\left(\frac{\eta}{\ell_Y}\right)\]</span></p>
+若单位振幅的单色平面波垂直照射到孔径上，孔径上的场分布为<span
+class="math inline">\(t_\mathrm{A}(\xi,\eta)\)</span>，则夫琅禾费图样为
+$$U(x,y,z)={U(,,0)}|_{f_X=x/(z),f_Y=y/(z)} \ \ =
+<span
+class="math display">\[\begin{aligned}\frac{\mathrm{e}^{\mathrm{j}kz}\mathrm{e}^{\mathrm{j}\frac{k}{2z}(x^2+y^2)}}{\mathrm{j}\lambda
+z}A\text{sinc}\left(\frac{\ell_Xx}{\lambda
+z}\right)\text{sinc}\left(\frac{\ell_Yy}{\lambda
+z}\right)\end{aligned}\]</span>
+<p>,  </p>
+<p>(A=_X_Y)$$</p>
+<p><span
+class="math display">\[I(x,y,z)=\frac{A^2}{\lambda^2z^2}\mathrm{sinc}^2\left(\frac{\ell_Xx}{\lambda
+z}\right)\mathrm{sinc}^2\left(\frac{\ell_Yy}{\lambda
+z}\right)\]</span></p>
+<figure>
+<img src="https://s2.loli.net/2024/02/20/roDuGnI4elFjmJc.png"
+alt="实际衍射图样需对比度反转" />
+<figcaption aria-hidden="true">实际衍射图样需对比度反转</figcaption>
+</figure>
+<h4 id="圆形孔">圆形孔</h4>
+<p>孔径直径为<span
+class="math inline">\(l\)</span>，孔径平面径向（极）坐标为<span
+class="math inline">\(q\)</span>， <span
+class="math display">\[t_\mathrm{A}(q)=\mathrm{circ}\left(2\frac{q}{\ell}\right)\]</span></p>
+<p>圆对称性，可用傅里叶-贝塞尔变换： <span
+class="math display">\[U(r,z)=\frac{\mathrm{e}^{\mathrm{j}kz}}{\mathrm{j}\lambda
+z}\exp\left(\mathrm{j}\frac{kr^{2}}{2z}\right)\mathcal{B}\{U(q,0)\}\bigg|_{\rho=r/(\lambda
+z)}
+\\\ \\ q=\sqrt{\xi^2+\eta^2}
+\\\ \\ \begin{aligned}\rho=\sqrt{f_X^2+f_Y^2}\end{aligned}\]</span></p>
+<p><span
+class="math display">\[\mathcal{B}\left\{\operatorname{circ}\left(2\frac
+q\ell\right)\right\}=A\left[2\frac{J_1(\pi\ell\rho)}{\pi\ell\rho}\right],
+\ A = \pi(\ell/2)^2\]</span></p>
+<p>夫琅禾费图样中的振幅和强度分布为： <span
+class="math display">\[U(r,z)=\mathrm{e}^{\mathrm{j}kz}\exp\left(\mathrm{j}\frac{kr^2}{2z}\right)\frac{A}{\mathrm{j}\lambda
+z}\left[2\frac{J_1k\ell r/(2z)}{k\ell r/(2z)}\right]\]</span></p>
+<p><span class="math display">\[I(r,z)=\left(\frac A{\lambda
+z}\right)^2\biggl[2\frac{J_1k\ell r/(2z)}{k\ell
+r/(2z)}\biggr]^2\]</span></p>
+<p>沿着<span class="math inline">\(x\)</span>轴或<span
+class="math inline">\(y\)</span>轴测量，中央瓣宽度为<span
+class="math inline">\(d = 1.22\frac{\lambda z}{\ell}\)</span></p>
+<h4 id="薄正弦振幅光栅">薄正弦振幅光栅</h4>
+<p>按照定义，透射率<span
+class="math inline">\(t_\mathrm{A}(\xi,\eta)\)</span>为紧贴屏幕后的场的复振幅与入射到屏幕上的复振幅的比值。考虑<em>薄正弦振幅光栅</em>，其透射函数如下（假设光栅结构被限制在宽度为<span
+class="math inline">\(\ell\)</span>的正方形孔径内）： <span
+class="math display">\[t_\mathrm{A}(\xi,\eta)=\left[\frac12+\frac
+m2\cos(2\pi
+f_0\xi)\right]\text{rect}\left(\frac\xi\ell\right)\text{rect}\left(\frac\eta\ell\right)\]</span></p>
+<p><img src="https://s2.loli.net/2024/02/21/kS9g67boUAtarOR.png" /></p>
+<p>单位振幅的单色平面波垂直照明，孔径透射场分布为<span
+class="math inline">\(t_A\)</span></p>
+<p><span
+class="math display">\[\begin{aligned}\mathcal{F}\left\{\frac{1}{2}+\frac{m}{2}\cos(2\pi
+f_0\xi)\right\}=&amp;\frac{1}{2}\delta(f_X,f_Y)+\frac{m}{4}\delta(f_X+f_0,f_Y)\\&amp;+\frac{m}{4}\delta(f_X-f_0,f_Y)\end{aligned}\]</span>
+<span
+class="math display">\[\mathcal{F}\left\{\mathrm{rect}\left(\frac\xi\ell\right)\mathrm{rect}\left(\frac\eta\ell\right)\right\}=A\mathrm{~sinc}(\ell
+f_X)\mathrm{sinc}(\ell f_Y)\]</span> 利用卷积定理求出 <span
+class="math display">\[\begin{gathered}
+\mathcal{F}\{U(\xi,\eta,0)\}= \frac A2\text{sinc}(\ell
+f_Y)\left\{\text{sinc}(\ell f_X)+\frac
+m2\text{sinc}[\ell(f_X+f_0)]\right.
+\left.+\frac m2\mathrm{sinc}[\ell(f_X-f_0)]\right\}
+\end{gathered}\]</span></p>
+<p>夫琅禾费衍射图样： <span class="math display">\[\begin{aligned}
+U(x,y,z)=&amp; \frac{A}{\text{j}2\lambda
+z}\mathrm{e}^{\mathbf{j}kz}\mathrm{e}^{\mathbf{j}\frac{k}{2z}(x^2+y^2)}\mathrm{sinc}\left(\frac{\ell
+y}{\lambda z}\right)\left\{\mathrm{sinc}\left(\frac{\ell x}{\lambda
+z}\right)\right. \\ &amp;
+\left.+\frac{m}{2}\text{sinc}\left[\frac{\ell}{\lambda z}(x+f_0\lambda
+z)\right]+\frac{m}{2}\text{sinc}\left[\frac{\ell}{\lambda
+z}(x-f_0\lambda z)\right]\right\}
+\end{aligned}\]</span></p>
+<p>若孔径内有许多光栅周期，则<span
+class="math inline">\(f_{0}\gg1/\ell\)</span>，可以忽略三个 <span
+class="math inline">\(\text{sinc}\)</span> 函数的相互重叠，得出强度：
+<span class="math display">\[\begin{aligned}
+I(x,y,z)&amp; \begin{aligned}\approx&amp;\left[\frac{A}{2\lambda
+z}\right]^2\text{sinc}^2\left(\frac{\ell y}{\lambda
+z}\right)\left\{\text{sinc}^2\left(\frac{\ell x}{\lambda
+z}\right)\right.\end{aligned}  \\
+&amp;\left.+\frac{m^{2}}{4}\mathrm{sinc}^{2}\left[\frac{\ell}{\lambda
+z}(x+f_{0}\lambda
+z)\right]+\frac{m^{2}}{4}\mathrm{sinc}^{2}\left[\frac{\ell}{\lambda
+z}(x-f_{0}\lambda z)\right]\right\}
+\end{aligned}\]</span></p>
+<p><img src="https://s2.loli.net/2024/02/21/i96puz5VmMqW72X.png" /></p>
+<p><strong>光栅的衍射效率</strong>：入射光功率有多少份额出现在光栅的某个单一的衍射级（通常是+1级），可由<span
+class="math inline">\(\delta\)</span>函数的系数求平方得出： <span
+class="math display">\[\begin{aligned}
+&amp;\eta_{0}=0.25, \\
+&amp;\eta_{+1}=m^{2}/16, \\
+&amp;\eta_{-1}=m^{2}/16.
+\end{aligned}\]</span></p>
+<p>+1级至多携带入射功率的<span class="math inline">\(1/16 =
+6.25\%\)</span>，前三级效率加起来只有<span
+class="math inline">\(1/4+m^2/8\)</span>，别的都被光栅吸收而损失了。</p>
+<p>（相当于把入射光<strong>集中</strong>到中央级？）</p>
+<h4 id="薄正弦相位光栅">薄正弦相位光栅</h4>
+<p><span
+class="math display">\[t_\mathrm{A}(\xi,\eta)=\exp\left[\text{j}\frac{m}{2}\sin(2\pi
+f_0\xi)\right]\text{rect}\left(\frac{\xi}{\ell}\right)\text{rect}\left(\frac{\eta}{\ell}\right)\]</span></p>
+<p>利用恒等式 <span
+class="math display">\[\exp\left[\text{j}\frac{m}{2}\sin(2\pi
+f_{0}\xi)\right]=\sum_{q=-\infty}^{\infty}J_{q}\left(\frac{m}{2}\right)\exp(\text{j}2\pi
+qf_{0}\xi) \]</span> 简化分析，进行傅里叶展开 <span
+class="math display">\[\mathcal{F}\left\{\exp\left[\mathrm{j}\frac{m}{2}\sin(2\pi
+f_0\xi)\right]\right\}=\sum_{q=-\infty}^\infty
+J_q\left(\frac{m}{2}\right)\delta(f_X-qf_0,f_Y) \tag{1}\]</span> 有
+<span class="math display">\[\begin{aligned}
+\mathcal{F}\{U(\xi,\eta,0)\}&amp;
+=\mathcal{F}\{t_{\mathrm{A}}(\xi,\eta)\}  \\
+&amp;=[A\mathrm{sinc}(\ell f_X)\mathrm{sinc}(\ell
+f_Y)]*\left[\sum_{q=-\infty}^\infty J_q\left(\frac
+m2\right)\delta(f_X-qf_0,f_Y)\right] \\
+&amp;=\sum_{q=-\infty}^\infty AJ_q\left(\frac
+m2\right)\text{sinc}[\ell(f_X-qf_0)]\text{sinc}(\ell f_Y)
+\end{aligned}\]</span></p>
+<p><span
+class="math display">\[\begin{aligned}U(x,y,z)=&amp;\frac{A}{\mathrm{j}\lambda
+z}\mathrm{e}^{\mathrm{j}kz}\mathrm{e}^{\mathrm{i}\frac{k}{2z}(x^2+y^2)}\\\times&amp;\sum_{q=-\infty}^{\infty}J_q\left(\frac{m}{2}\right)\mathrm{sinc}\left[\frac{\ell}{\lambda
+z}(x-qf_0\lambda z)\right]\mathrm{sinc}\left(\frac{\ell y}{\lambda
+z}\right)\end{aligned}\]</span></p>
+<p>假设孔径内有光栅的多个周期（<span
+class="math inline">\(f_0\gg1/\ell\)</span>），则可以忽略不同级的重叠，得到强度：
+<span class="math display">\[I(x,y,z)\approx\left(\frac{A}{\lambda
+z}\right)^2\sum_{q=-\infty}^\infty
+J_q^2\left(\frac{m}2\right)\operatorname{sinc}^2\left[\frac{\ell}{\lambda
+z}(x-qf_0\lambda z)\right]\operatorname{sinc}^2\left(\frac{\ell
+y}{\lambda z}\right)\]</span></p>
+<p>从而，正弦相位光栅的引入将能量从零级衍射偏转到许多更高级衍射上去，<span
+class="math inline">\(q\)</span>级衍射的强度为<span
+class="math inline">\([AJ_q(m/2)/(\lambda
+z)]^2\)</span>，这一级距离衍射图样中心的距离为<span
+class="math inline">\(qf_0\lambda z\)</span></p>
+<p><img src="https://s2.loli.net/2024/02/21/kQBVueSKwqFyP9p.png" /></p>
+<p>式<span
+class="math inline">\((1)\)</span>中系数平方为薄正弦相位光栅的衍射效率：</p>
+<p><span class="math display">\[\eta_{q}=J_{q}^{2}(m/2)\]</span></p>
+<p><img src="https://s2.loli.net/2024/02/21/crTfxnZweoJq3Pa.png" /></p>
+<p>到达+1或-1级的最大衍射效率为<span
+class="math inline">\(J_1^2\)</span>的极大值，为<span
+class="math inline">\(33.8\%\)</span>，远高于正弦振幅光栅；</p>
+<p>光栅不吸收光功率，因此出现在各级上的功率之和为常数，等于孔径内的入射功率</p>
+<h4 id="计算光栅衍射效率的一般方法">计算光栅衍射效率的一般方法</h4>
+<p>用周期函数<span
+class="math inline">\(P(x)\)</span>表示光栅的振幅透射率（假设在y方向上是均匀的），将<span
+class="math inline">\(P(x)\)</span>展开为傅里叶级数 <span
+class="math display">\[P(x)=\sum_{q=-\infty}^{\infty}c_q\mathrm{e}^{\mathrm{j}2\pi
+qx/L}\]</span> <span
+class="math display">\[c_q=\frac{1}{L}\int_{-L/2}^{L/2}P(x)\mathrm{e}^{-\text{j}2\pi
+qx/L}\mathrm{d}x\]</span> 其中<span
+class="math inline">\(L\)</span>为光栅周期，于是<span
+class="math inline">\(q\)</span>级衍射效率为 <span
+class="math display">\[\eta_q = |c_q|^2\]</span></p>
+<p>从而可以计算任意薄光栅的各级衍射效率。</p>
+<h2 id="菲涅尔衍射计算">菲涅尔衍射计算</h2>
+<h3 id="塔尔博特像">塔尔博特像</h3>
+<p>正弦振幅光栅，忽略光栅的有限大小： <span
+class="math display">\[t_\mathrm{A}(\xi,\eta)=\frac12[1+m\cos(2\pi\xi/L)]\]</span></p>
+<p><img src="https://s2.loli.net/2024/02/21/jl5VZWsObkE3w1o.png" /></p>
+<p>对透射函数作傅里叶变换： <span
+class="math display">\[\mathcal{F}\{t_\mathrm{A}(\xi,\eta)\}=\frac12\delta(f_X,f_Y)+\frac
+m4\delta\left(f_X-\frac1L,f_Y\right)+\frac
+m4\delta\left(f_X+\frac1L,f_Y\right)\]</span></p>
+<p>经过化简， <span
+class="math display">\[U(x,y,z)=\frac12\left[1+m\mathrm{e}^{-\mathrm{j}\frac{\pi\lambda
+z}{L^2}}\cos\left(\frac{2\pi x}L\right)\right]\]</span> <span
+class="math display">\[\begin{aligned}I(x,y,z)&amp;=\frac14\left[1+2m\cos\left(\frac{\pi\lambda
+z}{L^2}\right)\cos\left(\frac{2\pi x}L\right)+m^2\cos^2\left(\frac{2\pi
+x}L\right)\right]\end{aligned}\]</span></p>
+<p>三类塔尔博特像： 1. <span class="math inline">\(\pi\lambda
+z/L^2=2n\pi\text{ 或 }z=2nL^2/\lambda\)</span> 时 <span
+class="math display">\[I\left(x,y,\frac{2nL^2}\lambda\right)=\frac14\left[1+m\cos\left(\frac{2\pi
+x}L\right)\right]^2\]</span></p>
+<pre><code>为光栅的一个理想的像，即紧贴光栅之后观察到的强度的精确复制。</code></pre>
+<ol start="2" type="1">
+<li><p><span class="math inline">\(\pi\lambda z/L^2=(2n+1)\pi\text{ 或
+}z=(2n+1)L^2/\lambda\)</span> <span
+class="math display">\[I\left(x,y,\frac{(2n+1)L^2}\lambda\right)=\frac14\bigg[1-m\cos\left(\frac{2\pi
+x}L\right)\bigg]^2\]</span></p>
+<p>光栅的像的180°相位相移，或等价地对比度反转。</p></li>
+<li><p><span class="math inline">\(\pi\lambda z/L^2=(2n+\frac
+12)\pi~\text{或 }z=\left(2n+\frac12\right)L^2/\lambda\)</span> <span
+class="math display">\[\begin{aligned}
+\begin{aligned}I\left(x,y,\frac{\left(n-\frac{1}{2}\right)L^2}{\lambda}\right)\end{aligned}&amp;
+=\frac14\left[1+m^2\cos^2\left(\frac{2\pi x}L\right)\right]  \\
+&amp;=\frac14\left[\left(1+\frac{m^2}2\right)+\frac{m^2}2\cos\left(\frac{4\pi
+x}L\right)\right]
+\end{aligned}\]</span></p>
+<p>像的频率加倍，但对比度减小。</p>
+<p><img
+src="https://s2.loli.net/2024/02/21/F2hRK9PtWHxkGM1.png" /></p></li>
+</ol>
+<h2 id="波束光学">波束光学</h2>
+<ul>
+<li>高斯光束</li>
+<li>厄米-高斯光束</li>
+<li>拉盖尔-高斯光束</li>
+<li>贝塞尔光束</li>
+</ul>
+<h1 id="计算衍射和计算传播">计算衍射和计算传播</h1>
+<p>有些衍射孔径不能用于衍射公式给出闭合形式的解析解，为确定衍射图样，需要依靠数值计算，传播方程的离散形式来讨论光场通过光学系统的传播：包括对孔径函数<span
+class="math inline">\(U(x,y,0)\)</span>进行密集抽样、将抽样值适当补零、对连续运算进行离散模拟。</p>
+<h2
+id="对空间置限的二次相位指数函数的抽样">对空间置限的二次相位指数函数的抽样</h2>
+<p>二次相位指数函数 <span
+class="math display">\[f(x)=\frac1{\sqrt{\lambda
+z}}\exp\left[\text{j}\frac\pi{\lambda z}x^2\right]\]</span>
+和它的二维等价物<span
+class="math inline">\(f(x)f(y)\)</span>频繁地出现在衍射问题中，需要对这个函数抽样。</p>
+<p>对函数作傅里叶变换， <span
+class="math display">\[F(f_X)=\frac{1}{\sqrt{\lambda
+z}}\int_{-\ell/2}^{\ell/2}\exp\left(\mathrm{j}\pi\frac{x^2}{\lambda
+z}\right)\exp(-\mathrm{j}2\pi xf_X)\mathrm{d}x\]</span></p>
+<p>然后用数值积分求这个结果的大小的模平方的等价带宽 <span
+class="math display">\[B_X=\frac{\int_{-\infty}^{\infty}|F(f_X)|^2\mathrm{d}f_X}{|F(0)|^2}\]</span>
+结果是菲涅尔数<span
+class="math inline">\(\begin{aligned}N_\mathrm{F}=(\ell/2)^2/(\lambda
+z)\end{aligned}\)</span>的函数： <img
+src="https://s2.loli.net/2024/02/22/3b5OsqDhYojNtyz.png" /></p>
+<p>带宽在<span class="math inline">\(N_F =
+0.25\)</span>两侧趋势不同，渐近线分别为</p>
+<p>右侧 <span class="math display">\[\sqrt{\lambda
+z}B_X=\sqrt{4N_{F}}\quad\text{或}\quad B_X=\frac\ell{\lambda
+z}\]</span></p>
+<p>左侧 <span class="math display">\[\sqrt{\lambda
+z}B_X=\frac{1}{\sqrt{4N_\mathrm{F}}}\quad\text{或}\quad
+B_X=\frac{1}{\ell}\]</span></p>
+<p>考虑到实际空间频率的占有率分布，避免混叠，改为<span
+class="math inline">\(B_X= M/\ell\)</span>，<span
+class="math inline">\(M\)</span>足够大</p>
+<p>样本间隔<span class="math inline">\(\Delta x \leq 1/B_X\)</span></p>
+<p><span class="math inline">\(N_F &gt; 0.25\)</span>时，抽样元素个数
+<span class="math display">\[K=\ell/\Delta x&gt;\frac{\ell^2}{\lambda
+z}=4N_\mathrm{F}\]</span></p>
+<p><span class="math inline">\(N_F &lt; 0.25\)</span>时， <span
+class="math display">\[K=\ell/\Delta x&gt;M\]</span></p>
+<h2 id="计算衍射的几种方法">计算衍射的几种方法</h2>
+<ul>
+<li>卷积法</li>
+<li>菲涅尔变换法</li>
+<li>菲涅尔传递函数法</li>
+<li>精确传递函数法</li>
+</ul>
+<h1 id="相干光学系统的波动光学分析">相干光学系统的波动光学分析</h1>
+<ul>
+<li>透镜</li>
+</ul>
+<h2 id="薄透镜作为相位变换器">薄透镜作为相位变换器</h2>
+<p>薄透镜：光线在透镜一面上(x,y)点射入，在另一面上从近似相同的坐标射出，忽略光线在透镜内部的侧向平移。</p>
+<p><img src="https://s2.loli.net/2024/02/24/tHZBIN2FRlnCyxr.png" /></p>
+<p>波在(x,y)点穿过透镜发生的总相位延迟为 <span
+class="math display">\[\begin{aligned}\phi(x,y)=kn\Delta(x,y)+k[\Delta_0-\Delta(x,y)]\end{aligned}\]</span>
+透镜的作用可用相位变换表示： <span
+class="math display">\[t_l(x,y)=\exp[\text{j}k\Delta_0]\exp[\text{j}k(n-1)\Delta(x,y)]\]</span>
+<span
+class="math display">\[U_l^{\prime}(x,y)=t_l(x,y)U_l(x,y)\]</span></p>
+<h3 id="厚度函数">厚度函数</h3>
+<p><img src="https://s2.loli.net/2024/02/24/vkXnouhAzicPrYE.png" /></p>
+<p>把厚度分成三部分： <span
+class="math display">\[\Delta(x,y)=\Delta_1(x,y)+\Delta_2(x,y)+\Delta_3(x,y)\]</span></p>
+<p>利用几何关系， <span
+class="math display">\[\Delta(x,y)=\Delta_0-R_1\left(1-\sqrt{1-\frac{x^2+y^2}{R_1^2}}\right)+R_2\left(1-\sqrt{1-\frac{x^2+y^2}{R_2^2}}\right)\]</span></p>
+<h3 id="傍轴近似">傍轴近似</h3>
+<p>傍轴光束：x、y值足够小</p>
+<p><span
+class="math display">\[\begin{aligned}\sqrt{1-\frac{x^2+y^2}{R_1^2}}&amp;\approx1-\frac{x^2+y^2}{2R_1^2},\\\sqrt{1-\frac{x^2+y^2}{R_2^2}}&amp;\approx1-\frac{x^2+y^2}{2R_2^2}.\end{aligned}\]</span></p>
+<p>相当于用抛物面（二次相位曲面）近似透镜的球面。在这样的近似下， <span
+class="math display">\[\Delta(x,y)=\Delta_0-\frac{x^2+y^2}2\left(\frac1{R_1}-\frac1{R_2}\right)\]</span></p>
+<h3 id="相位变换及其物理意义">相位变换及其物理意义</h3>
+<p>近似后， <span
+class="math display">\[t_l(x,y)=\exp[\text{j}kn\Delta_0]\exp\left[-\text{j}k(n-1)\frac{x^2+y^2}2\left(\frac1{R_1}-\frac1{R_2}\right)\right]\]</span></p>
+<p>定义<span class="math inline">\(f\)</span>， <span
+class="math display">\[\frac1f\equiv(n-1)\left(\frac1{R_1}-\frac1{R_2}\right)\]</span></p>
+<p>忽略常数相位因子，相位变换可改写为 <span
+class="math display">\[t_l(x,y)=\exp\left[-\text{j}\frac{k}{2f}(x^2+y^2)\right]=\exp\left[-\text{j}\frac{\pi}{\lambda
+f}(x^2+y^2)\right]\]</span></p>
+<p>此为薄透镜对入射光效应的基本表示式（忽略了透镜的有限大小）</p>
+<figure>
+<img src="https://s2.loli.net/2024/02/24/7Ucu9NgZQ8oThAY.png"
+alt="图片.png" />
+<figcaption aria-hidden="true">图片.png</figcaption>
+</figure>
+<p><span
+class="math inline">\(f\)</span>采取的符号规则可表示任意透镜：上三个为正，后三个为负</p>
+<p>利用薄透镜的光线传递矩阵，假设透镜前后材料折射率为1 <span
+class="math display">\[\mathbf{M}=\begin{bmatrix}1&amp;0\\\\-1/f&amp;1\end{bmatrix}\]</span></p>
+<p>入射波 <span
+class="math display">\[\vec{v}_1=\begin{bmatrix}y\\\\0\end{bmatrix}\]</span></p>
+<p>透射波 <span
+class="math display">\[\left.\vec{v_2}=\left[\begin{array}{cc}1&amp;0\\-1/f&amp;1\end{array}\right.\right]\begin{bmatrix}y\\0\end{bmatrix}=\begin{bmatrix}y\\-y/f\end{bmatrix}\]</span></p>
+<p>则光线角度<span class="math inline">\(\theta_2 =
+-y/f\)</span>，波的局域空间频率 <span
+class="math display">\[f^{(l)}(y)=\frac{\theta_2}{\lambda}=-\frac{y}{\lambda
+f}\]</span> <span class="math display">\[(\theta_2 ≈
+\mathrm{sin}\theta_2)\]</span></p>
+<p><strong>由于局域空间频率对<span
+class="math inline">\(y\)</span>有一次线性关系，对其瞬时积分</strong>，透射波与入射波复振幅之比
+<span
+class="math display">\[t_l(y)=\exp\left[-\text{j}\frac{\pi}{\lambda
+f}y^2\right]\]</span></p>
+<p>回到二维，若透镜前的场分布<span
+class="math inline">\(U_l\)</span>等于1，透镜后的场 <span
+class="math display">\[U_l&#39;(x,y)=\exp\left[-\text{j}\frac{k}{2f}(x^2+y^2)\right]\]</span>
+可以理解为对球面波的二次相位近似。 -
+若焦距为正，则球面波向透镜轴后侧<span
+class="math inline">\(f\)</span>处<strong>会聚</strong>，正透镜； -
+若焦距为负，则球面波从透镜轴前<span
+class="math inline">\(f\)</span>处<strong>散开</strong>，负透镜。</p>
+<figure>
+<img src="https://s2.loli.net/2024/02/24/vo2XBMJpDlcKmCI.png"
+alt="图片.png" />
+<figcaption aria-hidden="true">图片.png</figcaption>
+</figure>
+<h3 id="相差">相差</h3>
+<p>将入射的平面波映射为球面波的结论，很大程度上依赖傍轴近似。在非傍轴条件下，理想球面的透镜会使出射波前产生<strong>像差</strong>；</p>
+<p>往往把透镜表面磨成非球面形状，减少出射波前对球面的偏离，从而校正像差</p>
+<h2 id="透镜的傅里叶变换性质">透镜的傅里叶变换性质</h2>
+]]></content>
+      <categories>
+        <category>教令院</category>
+      </categories>
+      <tags>
+        <tag>Optics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算成像导论</title>
+    <url>/2024/02/28/College/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F-%E4%BA%A4%E5%8F%89%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<blockquote>
+<p>《傅里叶光学导论》<a
+href="https://cowboy446.github.io/2024/02/01/College/计算成像/傅里叶光学导论/">（个人笔记）</a></p>
+</blockquote>
+<h1 id="lecture-1-显微成像概论">Lecture 1 显微成像概论</h1>
+<p>成像技术：传统视频--多维多尺度视频--智能计算成像</p>
+<p>全光函数：<span
+class="math inline">\(f(x,y,z,L,\lambda,t)\)</span>，恢复更多高维信息</p>
+<p>计算成像：Encode-Decode</p>
+<h2 id="现代显微成像">现代显微成像</h2>
+<p><strong>免疫荧光染色</strong></p>
+<blockquote>
+<p>Photons不是越多越好</p>
+</blockquote>
+<ul>
+<li>减弱背景荧光：confocal microscopy 单光子共聚焦--&gt;静态光学层析
+<ul>
+<li>点扫描，需要提高成像速度</li>
+<li>提高速度：Line-scan（对二维背景光过滤能力下降）/Spinning disk</li>
+</ul></li>
+<li>提高穿透：双光子/多光子
+<ul>
+<li>波长长的入射光穿透能力更强（指数级别），但还要考虑water
+absorption</li>
+<li>也是点扫描</li>
+<li>非线性激活，能量平方关系--&gt;聚焦面荧光效果最好，去除杂散光，光学层析</li>
+<li>基本限制：背景荧光噪声--&gt;
+三光子：更显著地抑制背景荧光，需要更强的能量——Sample Health</li>
+</ul></li>
+<li>降低光毒性 Photontoxic
+<ul>
+<li>长波长光</li>
+<li>低峰值光强，长时间曝光</li>
+<li>脉冲激光</li>
+<li>光片显微镜 Light-sheet microscopy，有效利用所有光子</li>
+</ul></li>
+</ul>
+<p><strong>活体介观显微成像？</strong></p>
+<p>细胞 --&gt; 器官尺度。</p>
+<h1 id="lecture-2-成像系统设计">Lecture 2 成像系统设计</h1>
+<h2 id="基本参数">基本参数</h2>
+<p><code>放大倍数</code>：<span class="math inline">\(M =
+\frac{f_{\text{image}}}{f_{\text{obj}}}\)</span></p>
+<p><code>空间分辨率</code>：衍射极限， <span class="math inline">\(d =
+\frac{\lambda}{2n\mathrm{sin}\theta}\)</span>，限制采样极限</p>
+<p><code>数值孔径 Numerical Aperture</code>：<span
+class="math inline">\(NA = n\mathrm{sin}\theta\)</span></p>
+<ul>
+<li><span class="math inline">\(NA\)</span>是透镜固有属性，<span
+class="math inline">\(\theta\)</span>是从透镜的光轴到透镜能够接收到的最边缘的光线的角度。</li>
+<li><span
+class="math inline">\(NA\)</span>越大，透镜接收光的能力越强，分辨率越高</li>
+</ul>
+<p><code>景深 Depth of field</code>：<span class="math inline">\(d_{tot}
+= \frac{\lambda n}{NA^2}+\frac{n}{M \cdot NA}e\)</span></p>
+<p><img src = "https://s2.loli.net/2024/03/12/fu6HCMBi9AeQ2WO.png" width = 300 alt = "景深示意图"></p>
+<p><code>轴向分辨率</code>：<span class="math inline">\(d_z =
+\frac{\lambda}{2n\mathrm{NA}^2}\)</span></p>
+<p><code>横向分辨率</code>：<span class="math inline">\(d_x =
+\frac{\lambda}{2n\mathrm{NA}}\)</span></p>
+<p><code>视场大小/视野 Field of View</code>：通常是视场角</p>
+<p><strong>物镜</strong></p>
+<p><img src = "https://s2.loli.net/2024/03/12/HiMqfWGgyvKO2nc.png" width = 400></p>
+<h2 id="系统设计流程">系统设计流程</h2>
+<hr />
+<p><strong>简单显微系统</strong></p>
+<ul>
+<li>视野大小/放大倍数</li>
+<li>分辨率</li>
+<li>工作波长</li>
+<li>工作距离</li>
+<li>景深/轴向分辨率</li>
+</ul>
+<p><strong>相机</strong></p>
+<ul>
+<li>像素数（2*视野/分辨率）</li>
+<li>采集速度</li>
+<li>量子效率、读出噪声</li>
+<li>尺寸</li>
+</ul>
+<hr />
+<h3 id="光学系统的设计">光学系统的设计</h3>
+<p><strong><code>4f system</code></strong>：<span
+class="math inline">\(M = \frac{f_d}{f}\)</span></p>
+<p><img src = "https://s2.loli.net/2024/03/12/gTKo6ZS47X5U8IG.png" width = 650></p>
+<p>级联
+<img src = "https://s2.loli.net/2024/03/12/YgIdcLvVX2qKZaQ.png" width = 600></p>
+<p>轴向间隔（景深）以<span class="math inline">\(M^2\)</span>变化
+<img src = "https://s2.loli.net/2024/03/12/XUojbWOmJT2rSD6.png" width = 600></p>
+<blockquote>
+<p>实际设计</p>
+<ul>
+<li>缩小孔径，增大F数以减小相差（亮度，景深，图像质量的trade-off）</li>
+<li>同样尺寸的镜头，焦距越长越好</li>
+</ul>
+<p>系统设计软件：Zemax，Sequential设计&amp;快速优化</p>
+</blockquote>
+<h3 id="光学系统的搭建">光学系统的搭建</h3>
+<p><img src = "https://s2.loli.net/2024/03/13/G9l6KVjF5AgEudD.png" width = 600></p>
+<h1 id="lecture-3-卷积解卷积">Lecture 3 卷积&amp;解卷积</h1>
+<h2 id="数字化建模卷积">数字化建模——卷积</h2>
+<p>成像系统：低通滤波器 <span class="math inline">\(b = x*c\)</span></p>
+<ul>
+<li><span class="math inline">\(c\)</span>：点扩散函数 <span
+class="math inline">\(PSF\)</span></li>
+<li><span class="math inline">\(x\)</span>：原像</li>
+<li><span
+class="math inline">\(b\)</span>：经过透镜系统后呈现在相机前的像</li>
+</ul>
+<p><img src = "https://s2.loli.net/2024/04/06/qb64rQZKuEfUsgc.png" width = 500></p>
+<p><img src = "https://s2.loli.net/2024/04/06/dEaxRc2hfsFnJ7U.png" width = 500></p>
+<h2 id="解卷积-deconvolution">解卷积 deconvolution</h2>
+<p><span class="math inline">\(b = x*c\)</span></p>
+<p>已知 <span class="math inline">\(b,c\)</span> 求解 <span
+class="math inline">\(x\)</span></p>
+<ul>
+<li>直接求逆：病态问题</li>
+<li>维纳滤波</li>
+<li>迭代优化算法/DL</li>
+<li>点扩散优化</li>
+</ul>
+<p><img src = "https://s2.loli.net/2024/04/06/NgGwU6cP3ZsQ1um.png" width = 200></p>
+<p><strong>Rechardson-Lucy(RL) deconvolution</strong></p>
+<figure class="highlight matlab"><figcaption><span>2D-RL deconvolution</span></figcaption><table><tr><td class="code"><pre><span class="line">maxiter = <span class="number">10</span>;</span><br><span class="line"><span class="comment">% Initialization</span></span><br><span class="line">deblurred_img = <span class="built_in">ones</span>([<span class="built_in">size</span>(WF)]); <span class="comment">% set image as initial guess</span></span><br><span class="line">psf_T = psf(<span class="keyword">end</span>:<span class="number">-1</span>:<span class="number">1</span>,<span class="keyword">end</span>:<span class="number">-1</span>:<span class="number">1</span>); <span class="comment">% flipped psf for bp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter = <span class="number">1</span>:maxiter</span><br><span class="line">    convolved_img = conv2(deblurred_img,psf,<span class="string">&#x27;same&#x27;</span>);</span><br><span class="line">    errorRelative = double(WF)./convolved_img;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% error bp using flipped psf</span></span><br><span class="line">    error = conv2(deblurred_img,psf_T,<span class="string">&#x27;same&#x27;</span>);</span><br><span class="line">    <span class="comment">% update the deblurred img</span></span><br><span class="line">    deblurred_img = error.*errorRelative;</span><br><span class="line">    deblurred_img(<span class="built_in">isnan</span>(deblurred_img)) = <span class="number">0</span>;</span><br><span class="line">    deblurred_img(deblurred_img &lt; <span class="number">0</span>) = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><figcaption><span>3D-RL deconvolution</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="lecture-4-光场成像">Lecture 4 光场成像</h1>
+]]></content>
+      <categories>
+        <category>往日之影</category>
+        <category>24 Spring</category>
+        <category>课上拾枝</category>
+        <category>24 Spring</category>
+        <category>教令院</category>
+        <category>Imaging</category>
+      </categories>
+      <tags>
+        <tag>Imaging</tag>
+        <tag>Microscopy</tag>
       </tags>
   </entry>
 </search>
