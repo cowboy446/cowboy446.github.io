@@ -49,7 +49,14 @@ const ap = new APlayer({
       url: 'http://music.163.com/song/media/outer/url?id=27314643.mp3',
       cover: 'https://cowboy446.github.io/music/Laughter In The Rain/cover.jpg',
       lrc: 'https://cowboy446.github.io/music/Laughter In The Rain/Laughter In The Rain-Neil Sedaka.lrc',
-    }
+    },
+    {
+      name: 'Les Rois du Monde',
+      artist: 'Gérard Presgurvic',
+      url: 'http://music.163.com/song/media/outer/url?id=483680382.mp3',
+      cover: 'https://cowboy446.github.io/music/Les Rois du Monde/cover.jpg',
+      lrc: 'https://cowboy446.github.io/music/Les Rois du Monde/Les rois du monde-Cover Team,Gérard Presgurvic.lrc',
+    },
   ],
 });
 
