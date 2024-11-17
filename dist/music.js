@@ -57,6 +57,13 @@ const ap = new APlayer({
       cover: 'https://cowboy446.github.io/music/Les Rois du Monde/cover.jpg',
       lrc: 'https://cowboy446.github.io/music/Les Rois du Monde/Les rois du monde-Cover Team,Gérard Presgurvic.lrc',
     },
+    {
+      name: '背中ごしにセンチメンタル',
+      artist: '宮里久美',
+      url: 'http://music.163.com/song/media/outer/url?id=664217.mp3',
+      cover: 'https://cowboy446.github.io/music/背中ごしにセンチメンタル/cover.jpg',
+      lrc: 'https://cowboy446.github.io/music/背中ごしにセンチメンタル/背中ごしにセンチメンタル-宮里久美.lrc',
+    }
   ],
 });
 
