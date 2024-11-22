@@ -48,7 +48,7 @@ const ap = new APlayer({
       artist: '飯島真理',
       url: 'http://music.163.com/song/media/outer/url?id=22710240.mp3',
       cover: 'http://p2.music.126.net/kJfQyqfiCbhcmmmrz_sBWQ==/873012232488748.jpg?param=300x300',
-      lrc: 'https://cowboy446.github.io/music/爱・おぼえていますか/爱・おぼえていますか-飯島真理.lrc',
+      lrc: 'https://cowboy446.github.io/music/爱 おぼえていますか/爱 おぼえていますか-飯島真理.lrc',
     },
     {
       name: '背中ごしにセンチメンタル(背后的愁绪)',
