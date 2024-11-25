@@ -19,6 +19,13 @@ const ap = new APlayer({
   lrcType: 3, // 0: 不显示歌词, 1: 网易云歌词, 3: 普通歌词
   audio: [
     {
+      name: '月の繭(月之茧)',
+      artist: '奥井亜紀',
+      url: 'http://music.163.com/song/media/outer/url?id=494858545.mp3',
+      cover: 'http://p1.music.126.net/JIkaThPKUhoXNM1QNgpByg==/5866994045904737.jpg?param=300x300',
+      lrc: 'https://cowboy446.github.io/music/月の繭/月の繭-奥井亜紀.lrc',
+    },
+    {
       name: '水の星へ爱をこめて(将爱献给水之星)',
       artist: '森口博子',
       url: 'http://music.163.com/song/media/outer/url?id=494858545.mp3',
