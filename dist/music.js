@@ -21,7 +21,7 @@ const ap = new APlayer({
     {
       name: '月の繭(月之茧)',
       artist: '奥井亜紀',
-      url: 'http://music.163.com/song/media/outer/url?id=494858545.mp3',
+      url: 'http://music.163.com/song/media/outer/url?id=28182273.mp3',
       cover: 'http://p1.music.126.net/JIkaThPKUhoXNM1QNgpByg==/5866994045904737.jpg?param=300x300',
       lrc: 'https://cowboy446.github.io/music/月の繭/月の繭-奥井亜紀.lrc',
     },
