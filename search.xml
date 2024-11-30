@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>计算成像导论</title>
+    <url>/2024/02/28/College/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F-%E4%BA%A4%E5%8F%89%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<p>重新整理中~</p>
+]]></content>
+      <categories>
+        <category>往日之影</category>
+        <category>课上拾枝</category>
+      </categories>
+      <tags>
+        <tag>Imaging</tag>
+        <tag>Microscopy</tag>
+        <tag>System</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统，控制与应用数学</title>
+    <url>/2024/11/01/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/applied_math_and_control_theories/</url>
+    <content><![CDATA[<h1 id="laplace-变换">Laplace 变换</h1>
+<!-- 引入一个pdf ， 圆角10px ， 透明度0.8 ，默认隐藏工具栏 ，默认隐藏自身 -->
+<embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf' style="border-radius: 10px;" />
+<h1 id="控制系统经典部分">控制系统（经典部分）</h1>
+<h2 id="时域分析">时域分析</h2>
+<h2 id="频域分析">频域分析</h2>
+<h2 id="系统校正">系统校正</h2>
+<h1 id="控制系统现代部分">控制系统（现代部分）</h1>
+<h2 id="状态空间">状态空间</h2>
+]]></content>
+      <categories>
+        <category>往日之影</category>
+        <category>课上拾枝</category>
+      </categories>
+      <tags>
+        <tag>Automation</tag>
+        <tag>System</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>社会心理学</title>
     <url>/2024/02/29/College/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6/</url>
     <content><![CDATA[<p><del>结果心理系改组以后这门课（还有没上成的一堆别的课）停开，真成时代的眼泪了（哭）</del></p>
@@ -1550,49 +1587,9 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
       <categories>
         <category>往日之影</category>
         <category>课上拾枝</category>
-        <category>24 Spring</category>
       </categories>
       <tags>
         <tag>Psychology</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>系统，控制与应用数学</title>
-    <url>/2024/11/01/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/applied_math_and_control_theories/</url>
-    <content><![CDATA[<h1 id="laplace-变换">Laplace 变换</h1>
-<!-- 引入一个pdf ， 圆角10px ， 透明度0.8 ，默认隐藏工具栏 ，默认隐藏自身 -->
-<embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf' style="border-radius: 10px;" />
-<h1 id="控制系统经典部分">控制系统（经典部分）</h1>
-<h2 id="时域分析">时域分析</h2>
-<h2 id="频域分析">频域分析</h2>
-<h2 id="系统校正">系统校正</h2>
-<h1 id="控制系统现代部分">控制系统（现代部分）</h1>
-<h2 id="状态空间">状态空间</h2>
-]]></content>
-      <categories>
-        <category>往日之影</category>
-        <category>课上拾枝</category>
-        <category>24 Fall</category>
-      </categories>
-      <tags>
-        <tag>Automation</tag>
-        <tag>System</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算成像导论</title>
-    <url>/2024/02/28/College/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F-%E4%BA%A4%E5%8F%89%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<p>重新整理中~</p>
-]]></content>
-      <categories>
-        <category>往日之影</category>
-        <category>课上拾枝</category>
-        <category>24 Spring</category>
-      </categories>
-      <tags>
-        <tag>Imaging</tag>
-        <tag>Microscopy</tag>
-        <tag>System</tag>
       </tags>
   </entry>
   <entry>
