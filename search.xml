@@ -1,152 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>系统，控制与应用数学</title>
-    <url>/2024/11/01/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/applied_math_and_control_theories/</url>
-    <content><![CDATA[<h1 id="laplace-变换">Laplace 变换</h1>
-<!-- 引入一个pdf ， 圆角10px ， 透明度0.8 ，默认隐藏工具栏 ，默认隐藏自身 -->
-<embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf' style="border-radius: 10px;" />
-<h1 id="控制系统">控制系统</h1>
-]]></content>
-      <categories>
-        <category>往日之影</category>
-        <category>24 Fall</category>
-        <category>课上拾枝</category>
-        <category>24 Fall</category>
-      </categories>
-      <tags>
-        <tag>Automation</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算成像导论</title>
     <url>/2024/02/28/College/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F/%E8%AE%A1%E7%AE%97%E6%88%90%E5%83%8F-%E4%BA%A4%E5%8F%89%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<blockquote>
-<p>《傅里叶光学导论》<a
-href="https://cowboy446.github.io/2024/02/01/College/计算成像/傅里叶光学导论/">（个人笔记）</a></p>
-</blockquote>
-<h1 id="lecture-1-显微成像概论">Lecture 1 显微成像概论</h1>
-<p>成像技术：传统视频--多维多尺度视频--智能计算成像</p>
-<p>全光函数：<span
-class="math inline">\(f(x,y,z,L,\lambda,t)\)</span>，恢复更多高维信息</p>
-<p>计算成像：Encode-Decode</p>
-<h2 id="现代显微成像">现代显微成像</h2>
-<p><strong>免疫荧光染色</strong></p>
-<blockquote>
-<p>Photons不是越多越好</p>
-</blockquote>
-<ul>
-<li>减弱背景荧光：confocal microscopy 单光子共聚焦--&gt;静态光学层析
-<ul>
-<li>点扫描，需要提高成像速度</li>
-<li>提高速度：Line-scan（对二维背景光过滤能力下降）/Spinning disk</li>
-</ul></li>
-<li>提高穿透：双光子/多光子
-<ul>
-<li>波长长的入射光穿透能力更强（指数级别），但还要考虑water
-absorption</li>
-<li>也是点扫描</li>
-<li>非线性激活，能量平方关系--&gt;聚焦面荧光效果最好，去除杂散光，光学层析</li>
-<li>基本限制：背景荧光噪声--&gt;
-三光子：更显著地抑制背景荧光，需要更强的能量——Sample Health</li>
-</ul></li>
-<li>降低光毒性 Photontoxic
-<ul>
-<li>长波长光</li>
-<li>低峰值光强，长时间曝光</li>
-<li>脉冲激光</li>
-<li>光片显微镜 Light-sheet microscopy，有效利用所有光子</li>
-</ul></li>
-</ul>
-<p><strong>活体介观显微成像？</strong></p>
-<p>细胞 --&gt; 器官尺度。</p>
-<h1 id="lecture-2-成像系统设计">Lecture 2 成像系统设计</h1>
-<h2 id="基本参数">基本参数</h2>
-<p><code>放大倍数</code>：<span class="math inline">\(M =
-\frac{f_{\text{image}}}{f_{\text{obj}}}\)</span></p>
-<p><code>空间分辨率</code>：衍射极限， <span class="math inline">\(d =
-\frac{\lambda}{2n\mathrm{sin}\theta}\)</span>，限制采样极限</p>
-<p><code>数值孔径 Numerical Aperture</code>：<span
-class="math inline">\(NA = n\mathrm{sin}\theta\)</span></p>
-<ul>
-<li><span class="math inline">\(NA\)</span>是透镜固有属性，<span
-class="math inline">\(\theta\)</span>是从透镜的光轴到透镜能够接收到的最边缘的光线的角度。</li>
-<li><span
-class="math inline">\(NA\)</span>越大，透镜接收光的能力越强，分辨率越高</li>
-</ul>
-<p><code>景深 Depth of field</code>：<span class="math inline">\(d_{tot}
-= \frac{\lambda n}{NA^2}+\frac{n}{M \cdot NA}e\)</span></p>
-<p><img src = "https://s2.loli.net/2024/03/12/fu6HCMBi9AeQ2WO.png" width = 300 alt = "景深示意图"></p>
-<p><code>轴向分辨率</code>：<span class="math inline">\(d_z =
-\frac{\lambda}{2n\mathrm{NA}^2}\)</span></p>
-<p><code>横向分辨率</code>：<span class="math inline">\(d_x =
-\frac{\lambda}{2n\mathrm{NA}}\)</span></p>
-<p><code>视场大小/视野 Field of View</code>：通常是视场角</p>
-<p><strong>物镜</strong></p>
-<p><img src = "https://s2.loli.net/2024/03/12/HiMqfWGgyvKO2nc.png" width = 400></p>
-<h2 id="系统设计流程">系统设计流程</h2>
-<hr />
-<p><strong>简单显微系统</strong></p>
-<ul>
-<li>视野大小/放大倍数</li>
-<li>分辨率</li>
-<li>工作波长</li>
-<li>工作距离</li>
-<li>景深/轴向分辨率</li>
-</ul>
-<p><strong>相机</strong></p>
-<ul>
-<li>像素数（2*视野/分辨率）</li>
-<li>采集速度</li>
-<li>量子效率、读出噪声</li>
-<li>尺寸</li>
-</ul>
-<hr />
-<h3 id="光学系统的设计">光学系统的设计</h3>
-<p><strong><code>4f system</code></strong>：<span
-class="math inline">\(M = \frac{f_d}{f}\)</span></p>
-<p><img src = "https://s2.loli.net/2024/03/12/gTKo6ZS47X5U8IG.png" width = 650></p>
-<p>级联
-<img src = "https://s2.loli.net/2024/03/12/YgIdcLvVX2qKZaQ.png" width = 600></p>
-<p>轴向间隔（景深）以<span class="math inline">\(M^2\)</span>变化
-<img src = "https://s2.loli.net/2024/03/12/XUojbWOmJT2rSD6.png" width = 600></p>
-<blockquote>
-<p>实际设计</p>
-<ul>
-<li>缩小孔径，增大F数以减小相差（亮度，景深，图像质量的trade-off）</li>
-<li>同样尺寸的镜头，焦距越长越好</li>
-</ul>
-<p>系统设计软件：Zemax，Sequential设计&amp;快速优化</p>
-</blockquote>
-<h3 id="光学系统的搭建">光学系统的搭建</h3>
-<p><img src = "https://s2.loli.net/2024/03/13/G9l6KVjF5AgEudD.png" width = 600></p>
-<h1 id="lecture-3-卷积解卷积">Lecture 3 卷积&amp;解卷积</h1>
-<h2 id="数字化建模卷积">数字化建模——卷积</h2>
-<p>成像系统：低通滤波器 <span class="math inline">\(b = x*c\)</span></p>
-<ul>
-<li><span class="math inline">\(c\)</span>：点扩散函数 <span
-class="math inline">\(PSF\)</span></li>
-<li><span class="math inline">\(x\)</span>：原像</li>
-<li><span
-class="math inline">\(b\)</span>：经过透镜系统后呈现在相机前的像</li>
-</ul>
-<p><img src = "https://s2.loli.net/2024/04/06/qb64rQZKuEfUsgc.png" width = 500></p>
-<p><img src = "https://s2.loli.net/2024/04/06/dEaxRc2hfsFnJ7U.png" width = 500></p>
-<h2 id="解卷积-deconvolution">解卷积 deconvolution</h2>
-<p><span class="math inline">\(b = x*c\)</span></p>
-<p>已知 <span class="math inline">\(b,c\)</span> 求解 <span
-class="math inline">\(x\)</span></p>
-<ul>
-<li>直接求逆：病态问题</li>
-<li>维纳滤波</li>
-<li>迭代优化算法/DL</li>
-<li>点扩散优化</li>
-</ul>
-<p><img src = "https://s2.loli.net/2024/04/06/NgGwU6cP3ZsQ1um.png" width = 200></p>
-<p><strong>Rechardson-Lucy(RL) deconvolution</strong></p>
-<figure class="highlight matlab"><figcaption><span>2D-RL deconvolution</span></figcaption><table><tr><td class="code"><pre><span class="line">maxiter = <span class="number">10</span>;</span><br><span class="line"><span class="comment">% Initialization</span></span><br><span class="line">deblurred_img = <span class="built_in">ones</span>([<span class="built_in">size</span>(WF)]); <span class="comment">% set image as initial guess</span></span><br><span class="line">psf_T = psf(<span class="keyword">end</span>:<span class="number">-1</span>:<span class="number">1</span>,<span class="keyword">end</span>:<span class="number">-1</span>:<span class="number">1</span>); <span class="comment">% flipped psf for bp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter = <span class="number">1</span>:maxiter</span><br><span class="line">    convolved_img = conv2(deblurred_img,psf,<span class="string">&#x27;same&#x27;</span>);</span><br><span class="line">    errorRelative = double(WF)./convolved_img;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% error bp using flipped psf</span></span><br><span class="line">    error = conv2(deblurred_img,psf_T,<span class="string">&#x27;same&#x27;</span>);</span><br><span class="line">    <span class="comment">% update the deblurred img</span></span><br><span class="line">    deblurred_img = error.*errorRelative;</span><br><span class="line">    deblurred_img(<span class="built_in">isnan</span>(deblurred_img)) = <span class="number">0</span>;</span><br><span class="line">    deblurred_img(deblurred_img &lt; <span class="number">0</span>) = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><figcaption><span>3D-RL deconvolution</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="lecture-4-光场成像">Lecture 4 光场成像</h1>
+    <content><![CDATA[<p>重新整理中~</p>
 ]]></content>
       <categories>
         <category>往日之影</category>
@@ -159,6 +16,31 @@ class="math inline">\(x\)</span></p>
       <tags>
         <tag>Imaging</tag>
         <tag>Microscopy</tag>
+        <tag>System</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统，控制与应用数学</title>
+    <url>/2024/11/01/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/applied_math_and_control_theories/</url>
+    <content><![CDATA[<h1 id="laplace-变换">Laplace 变换</h1>
+<!-- 引入一个pdf ， 圆角10px ， 透明度0.8 ，默认隐藏工具栏 ，默认隐藏自身 -->
+<embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf' style="border-radius: 10px;" />
+<h1 id="控制系统经典部分">控制系统（经典部分）</h1>
+<h2 id="时域分析">时域分析</h2>
+<h2 id="频域分析">频域分析</h2>
+<h2 id="系统校正">系统校正</h2>
+<h1 id="控制系统现代部分">控制系统（现代部分）</h1>
+<h2 id="状态空间">状态空间</h2>
+]]></content>
+      <categories>
+        <category>往日之影</category>
+        <category>24 Fall</category>
+        <category>课上拾枝</category>
+        <category>24 Fall</category>
+      </categories>
+      <tags>
+        <tag>Automation</tag>
+        <tag>System</tag>
       </tags>
   </entry>
   <entry>
