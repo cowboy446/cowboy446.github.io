@@ -62,6 +62,13 @@ const ap = new APlayer({
       lrc: 'https://cowboy446.github.io/music/Call Me Call Me/Call Me Call Me-Steve Conte.lrc',
     },
     {
+      name: 'heaven\'s not enough',
+      artist: 'Steve Conte',
+      url: 'http://music.163.com/song/media/outer/url?id=590177.mp3',
+      cover: 'http://p1.music.126.net/EnsuB9nh3gfGt3P5gPR6Lg==/109951163023785025.jpg?param=300x300',
+      lrc: 'https://cowboy446.github.io/music/heaven\'s not enough/heaven\'s not enough-Steve Conte.lrc',
+    },
+    {
       name: 'Laughter In The Rain',
       artist: 'Neil Sedaka',
       url: 'http://music.163.com/song/media/outer/url?id=27314643.mp3',
