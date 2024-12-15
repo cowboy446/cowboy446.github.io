@@ -28,7 +28,7 @@
 <meta property="og:description" content="控制系统专业课大杂烩">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-30T16:41:57.617Z">
+<meta property="article:modified_time" content="2024-12-15T15:32:22.786Z">
 <meta property="article:author" content="Cowboy Cyber">
 <meta property="article:tag" content="Automation">
 <meta property="article:tag" content="System">
@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#laplace-%E5%8F%98%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">Laplace 变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%BB%8F%E5%85%B8%E9%83%A8%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">控制系统（经典部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90"><span class="nav-number">2.1.</span> <span class="nav-text">时域分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90"><span class="nav-number">2.2.</span> <span class="nav-text">频域分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%A0%A1%E6%AD%A3"><span class="nav-number">2.3.</span> <span class="nav-text">系统校正</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%8E%B0%E4%BB%A3%E9%83%A8%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">控制系统（现代部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4"><span class="nav-number">3.1.</span> <span class="nav-text">状态空间</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#laplace-%E5%8F%98%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">Laplace 变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%8E%B0%E4%BB%A3%E9%83%A8%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">控制系统（现代部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8D%95%E5%85%83"><span class="nav-number">2.1.</span> <span class="nav-text">控制系统的基本单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4"><span class="nav-number">2.2.</span> <span class="nav-text">状态空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E9%98%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">传递函数阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.2.</span> <span class="nav-text">状态空间的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%AD%89%E4%BB%B7%E5%8F%98%E6%8D%A2"><span class="nav-number">2.2.3.</span> <span class="nav-text">系统的等价变换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%BB%8F%E5%85%B8%E9%83%A8%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">控制系统（经典部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90"><span class="nav-number">3.1.</span> <span class="nav-text">时域分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">频域分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%A0%A1%E6%AD%A3"><span class="nav-number">3.3.</span> <span class="nav-text">系统校正</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -260,7 +260,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-01 00:41:57" itemprop="dateModified" datetime="2024-12-01T00:41:57+08:00">2024-12-01</time>
+      <time title="修改时间：2024-12-15 23:32:22" itemprop="dateModified" datetime="2024-12-15T23:32:22+08:00">2024-12-15</time>
     </span>
 
   
@@ -290,15 +290,126 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="laplace-变换">Laplace 变换</h1>
+    <div class="post-body" itemprop="articleBody"><p><img src = 'https://s2.loli.net/2024/12/15/C58OiuglKvJspGf.png' width = '75%' style = 'border-radius: 10px' alt = '系统的支配构造'></p>
+<h1 id="laplace-变换">Laplace 变换</h1>
 <!-- 引入一个pdf ， 圆角10px ， 透明度0.8 ，默认隐藏工具栏 ，默认隐藏自身 -->
 <embed src="https://cowboy446.github.io/pdf/2024/SS2024S.pdf" width="90%" height="600px" type='application/pdf' style="border-radius: 10px;" />
+<h1 id="控制系统现代部分">控制系统（现代部分）</h1>
+<h2 id="控制系统的基本单元">控制系统的基本单元</h2>
+<ol type="1">
+<li><p><strong>比例环节</strong> <span class="math display">\[G(s) =
+k_p\]</span></p></li>
+<li><p><strong>惯性环节</strong> <span class="math display">\[G(s) =
+\frac{1}{Ts+1}\]</span> <span class="math inline">\(h(t) =
+1-e^{-\frac{t}{T}}\)</span> 单位阶跃响应为指数曲线</p></li>
+<li><p><strong>二阶震荡环节</strong> <span class="math display">\[G(s) =
+\frac{1}{T^2s^2+2\xi Ts+1}\]</span> <span
+class="math inline">\(T\)</span> 为时间常数，<span
+class="math inline">\(\xi\)</span> 为阻尼系数</p>
+<p><span class="math inline">\(s_1,2 = -\frac{\xi}{T} \pm
+\frac{\sqrt{\xi^2-1}}{T}\)</span></p>
+<ul>
+<li><span class="math inline">\(\xi = 0\)</span>
+无阻尼，无衰减振荡，一对纯虚根</li>
+<li><span class="math inline">\(0&lt;\xi&lt;1\)</span>
+欠阻尼，衰减振荡，一对共轭复根</li>
+<li><span class="math inline">\(\xi = 1\)</span>
+临界阻尼，单调衰减，相等负实根</li>
+<li><span class="math inline">\(\xi &gt; 1\)</span>
+过阻尼，无振荡，两个不相等的实根</li>
+</ul></li>
+<li><p><strong>积分环节</strong> <span class="math display">\[G(s) =
+\frac{k_i}{s}\]</span></p></li>
+<li><p><strong>延迟环节</strong> <span class="math display">\[G(s) =
+e^{-\tau s}\]</span></p></li>
+<li><p><strong>微分环节</strong> <span class="math display">\[G(s) = k_d
+s\]</span> <span class="math display">\[G(s) = Ts+1\]</span> <span
+class="math display">\[G(s) = T^2s^2+2\xi Ts+1\]</span></p></li>
+</ol>
+<h2 id="状态空间">状态空间</h2>
+<p><span class="math display">\[\begin{cases}
+\dot{x} = Ax+Bu \\
+y = Cx(+Du)
+\end{cases}\]</span></p>
+<ul>
+<li><span class="math inline">\(x(t)\)</span> 为状态向量，<span
+class="math inline">\(u(t)\)</span> 为输入向量，<span
+class="math inline">\(y(t)\)</span> 为输出向量</li>
+<li>状态变量个数等于系统独立储能元件个数，即系统阶数</li>
+<li>状态方程<span class="math inline">\(\dot{x} = Ax+Bu\)</span>
+描述系统状态变量的变化，输出方程<span class="math inline">\(y =
+Cx+Du\)</span> 描述系统输出与状态变量的关系</li>
+</ul>
+<h3 id="传递函数阵">传递函数阵</h3>
+<p>对状态方程和输出方程进行拉普拉斯变换</p>
+<p><span class="math display">\[\begin{cases}
+X(s) = (sI-A)^{-1}BU(s) \\
+Y(s) = C(sI-A)^{-1}BU(s)+DU(s)
+\end{cases}\]</span></p>
+<p>得到传递函数阵</p>
+<p><span class="math display">\[G(s) = C(sI-A)^{-1}B+D\]</span></p>
+<p><strong>组合系统传递函数阵</strong></p>
+<ul>
+<li>并联：<span class="math inline">\(G(s) = G_1(s)+G_2(s)\)</span></li>
+<li>串联：<span class="math inline">\(G(s) =
+G_2(s)G_1(s)\)</span>（注意顺序）</li>
+<li>反馈：<span class="math inline">\(G(s) =
+G_1(s)\cdot[I+G_2(s)G_1(s)]^{-1}\)</span></li>
+</ul>
+<h3 id="状态空间的实现">状态空间的实现</h3>
+<p>本质是找状态变量</p>
+<ol type="1">
+<li>串并联分解至最小单元（积分单元），系统框图--&gt;状态方程</li>
+<li>部分分式分解（留数分解），得Jordan标准型</li>
+<li>基于积分器串联+常值反馈，得到能控、能观标准型，二者互为对偶</li>
+</ol>
+<embed src="https://cowboy446.github.io/pdf/2024/状态空间的实现.pdf" width="90%" height="600px" type='application/pdf' style="border-radius: 10px;" />
+<h3 id="系统的等价变换">系统的等价变换</h3>
+<p>对于系统[1]</p>
+<p><span class="math display">\[\begin{cases}
+\dot{x} = Ax+Bu \\
+y = Cx+Du
+\end{cases}\]</span></p>
+<p>进行坐标线性变换<span style="color: #034C7A;"><span
+class="math inline">\(x = Tz\)</span></span>或<span
+class="math inline">\(z = T^{-1}x\)</span>，得到新的状态方程</p>
+<p><span class="math display">\[\begin{cases}
+\dot{z} = T^{-1}ATz+T^{-1}Bu \\
+y = CTz+Du
+\end{cases}\]</span></p>
+<p>令</p>
+<p><span class="math display">\[\begin{cases}
+A&#39; = T^{-1}AT ,\  B&#39; = T^{-1}B \\
+C&#39; = CT ,\ D&#39; = D\\
+\end{cases}\]</span></p>
+<p>则新的状态方程[2]为</p>
+<p><span class="math display">\[\begin{cases}
+\dot{z} = A&#39;z+B&#39;u \\
+y = C&#39;z+D&#39;u
+\end{cases}\]</span></p>
+<p>[1]和[2]在代数上等价</p>
+<p><strong>系统特征值（状态矩阵<span
+class="math inline">\(A\)</span>的特征值<span
+class="math inline">\(\lambda\)</span>， <span
+class="math inline">\(|\lambda I-A| =
+0\)</span>）、特征多项式、传递函数阵在等价系统中具有相同形式</strong></p>
+<p><strong>特征向量</strong>：<span class="math inline">\(AP_i =
+\lambda_iP_i\)</span>，<span
+class="math inline">\(P_i\)</span>为矩阵<span
+class="math inline">\(A\)</span>的对应于特征值<span
+class="math inline">\(\lambda_i\)</span>的特征向量</p>
+<p><strong>状态空间表达式变换为标准型</strong></p>
+<ul>
+<li>矩阵有两两相异特征值，可通过<span class="math inline">\(z =
+T^{-1}x\)</span>变换为对角型，<span class="math inline">\(T =
+[P_1,P_2,\cdots,P_n]\)</span>特征向量矩阵</li>
+<li>矩阵有重特征值，仍可迭代计算求出能变换为Jordan标准型的特征向量矩阵<span
+class="math inline">\(T\)</span>，从而变换为Jordan标准型</li>
+</ul>
 <h1 id="控制系统经典部分">控制系统（经典部分）</h1>
 <h2 id="时域分析">时域分析</h2>
 <h2 id="频域分析">频域分析</h2>
 <h2 id="系统校正">系统校正</h2>
-<h1 id="控制系统现代部分">控制系统（现代部分）</h1>
-<h2 id="状态空间">状态空间</h2>
 
     </div>
 
@@ -321,6 +432,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/12/15/College/%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/control/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
